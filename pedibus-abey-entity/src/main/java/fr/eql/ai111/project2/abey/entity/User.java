@@ -2,6 +2,7 @@ package fr.eql.ai111.project2.abey.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class User implements Serializable {
 
@@ -10,12 +11,12 @@ public class User implements Serializable {
     private String passwordUser;
     private String nameUser;
     private String firstnameUser;
-    private LocalDate birthDateUser;
+    private Date birthDateUser;
     private String phoneUser;
     private String mailUser;
-    private LocalDate dateCreationAccountUser;
+    private Date dateCreationAccountUser;
 
-    public User(int idUser, String loginUser, String passwordUser, String nameUser, String firstnameUser, LocalDate birthDateUser, String phoneUser, String mailUser, LocalDate dateCreationAccountUser) {
+    public User(int idUser, String loginUser, String passwordUser, String nameUser, String firstnameUser, Date birthDateUser, String phoneUser, String mailUser, Date dateCreationAccountUser) {
         this.idUser = idUser;
         this.loginUser = loginUser;
         this.passwordUser = passwordUser;
@@ -57,10 +58,10 @@ public class User implements Serializable {
     public void setFirstnameUser(String firstnameUser) {
         this.firstnameUser = firstnameUser;
     }
-    public LocalDate getBirthDateUser() {
+    public Date getBirthDateUser() {
         return birthDateUser;
     }
-    public void setBirthDateUser(LocalDate birthDateUser) {
+    public void setBirthDateUser(Date birthDateUser) {
         this.birthDateUser = birthDateUser;
     }
     public String getPhoneUser() {
@@ -75,10 +76,10 @@ public class User implements Serializable {
     public void setMailUser(String mailUser) {
         this.mailUser = mailUser;
     }
-    public LocalDate getDateCreationAccountUser() {
+    public Date getDateCreationAccountUser() {
         return dateCreationAccountUser;
     }
-    public void setDateCreationAccountUser(LocalDate dateCreationAccountUser) {
+    public void setDateCreationAccountUser(Date dateCreationAccountUser) {
         this.dateCreationAccountUser = dateCreationAccountUser;
     }
 

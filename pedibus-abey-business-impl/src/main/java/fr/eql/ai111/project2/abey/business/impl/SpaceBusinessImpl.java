@@ -16,7 +16,7 @@ public class SpaceBusinessImpl implements SpaceBusiness {
     UserDao userDao;
 
     @Override
-    public void registerUserStatementExecution(User user) {
+    public void registerUser(User user) {
         userDao.registerUser(user);
     }
 }

@@ -4,5 +4,5 @@ import fr.eql.ai111.project2.abey.entity.User;
 
 public interface SpaceBusiness {
 
-    void registerUserStatementExecution (User user);
+    void registerUser (User user);
 }

@@ -57,10 +57,10 @@ public class UserDaoImpl implements UserDao {
         statement.setString(2, user.getPasswordUser());
         statement.setString(3, user.getNameUser());
         statement.setString(4, user.getFirstnameUser());
-        statement.setDate(5, Date.valueOf(user.getBirthDateUser()));
+        statement.setDate(5, new Date(user.getBirthDateUser().getTime()));
         statement.setString(6, user.getPhoneUser());
         statement.setString(7, user.getMailUser());
-        statement.setDate(8, Date.valueOf(LocalDate.now()));
+        statement.setDate(8, new Date(user.getDateCreationAccountUser().getTime()));
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
             try (ResultSet resultSet = statement.getGeneratedKeys()) {
