@@ -530,7 +530,7 @@ INSERT IGNORE INTO `user` (`id_user`, `name_user`, `firstname_user`, `birthdate_
 	(2, 'CHAMMOUS', 'Elie', '1991-10-27', '0615965454', 'elie.chammous@eql.fr', '2022-07-19', 16),
 	(3, 'FRANCOIS', 'Yoann', '1989-12-03', '0315761237', 'yoann.francois@eql.fr', '2022-07-19', 7),
 	(4, 'MAFFRAY', 'Antoine', '1994-06-04', '0319936571', 'antoine.maffray@eql.fr', '2022-07-19', 5),
-	(5, 'CARCIN', 'Sophie', '1989-07-06', '0348631792', 'sophie.garcin@eql.fr', '2022-07-20', 19);
+	(5, 'GARCIN', 'Sophie', '1989-07-06', '0348631792', 'sophie.garcin@eql.fr', '2022-07-20', 19);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
