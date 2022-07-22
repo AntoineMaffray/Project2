@@ -2,11 +2,13 @@ package fr.eql.ai111.project2.abey.dao;
 
 import fr.eql.ai111.project2.abey.entity.User;
 
+import java.sql.Connection;
 import java.sql.Date;
 
 public interface UserDao {
 
-    User register (
+    /*
+    void registerUser (
             String login,
             String password,
             String name,
@@ -14,6 +16,8 @@ public interface UserDao {
             Date birthDate,
             String phone,
             String mail,
-            Date dateCreationAccount);
+            Date dateCreationAccount);*/
+
+    void registerUser (User user);
 
 }

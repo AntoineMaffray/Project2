@@ -16,7 +16,7 @@
 bin/
 
 # Maven project
-target/
+**/target/
 
 # IntelliJ project
 *.iml
