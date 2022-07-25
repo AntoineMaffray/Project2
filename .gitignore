@@ -14,9 +14,10 @@
 
 # Java project
 bin/
+*.properties
 
 # Maven project
-target/
+**/target/
 
 # IntelliJ project
 *.iml
