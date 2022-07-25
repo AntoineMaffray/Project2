@@ -43,70 +43,59 @@ public class LoginManagedBean implements Serializable {
         return null;
     }
 
+//    public void resetSelectedCity() {
+//        selectedCity = null;
+
+//    }
+
     public String getNewLoginUser() {
         return newLoginUser;
     }
-
     public void setNewLoginUser(String newLoginUser) {
         this.newLoginUser = newLoginUser;
     }
-
     public String getNewPasswordUser() {
         return newPasswordUser;
     }
-
     public void setNewPasswordUser(String newPasswordUser) {
         this.newPasswordUser = newPasswordUser;
     }
-
     public String getNewNameUser() {
         return newNameUser;
     }
-
     public void setNewNameUser(String newNameUser) {
         this.newNameUser = newNameUser;
     }
-
     public String getNewFirstnameUser() {
         return newFirstnameUser;
     }
-
     public void setNewFirstnameUser(String newFirstnameUser) {
         this.newFirstnameUser = newFirstnameUser;
     }
-
     public Date getNewBirthDateUser() {
         return newBirthDateUser;
     }
-
     public void setNewBirthDateUser(Date newBirthDateUser) {
         this.newBirthDateUser = newBirthDateUser;
     }
-
     public String getNewPhoneUser() {
         return newPhoneUser;
     }
-
     public void setNewPhoneUser(String newPhoneUser) {
         this.newPhoneUser = newPhoneUser;
     }
-
     public String getNewMailUser() {
         return newMailUser;
     }
-
     public void setNewMailUser(String newMailUser) {
         this.newMailUser = newMailUser;
     }
-
     public Date getNewDateCreationAccountUser() {
         return newDateCreationAccountUser;
     }
-
     public void setNewDateCreationAccountUser(Date newDateCreationAccountUser) {
         this.newDateCreationAccountUser = newDateCreationAccountUser;
     }
-
     public String fullDate (LocalDate date) {
         return DateUtils.fullDate(date);
     }
