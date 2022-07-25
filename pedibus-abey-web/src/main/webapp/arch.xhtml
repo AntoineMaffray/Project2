@@ -15,17 +15,22 @@
     <b:form>
         <div class="bg-success header flex-justify-center flex-align-center">
             <div>Pedibus Abey
-                <b:iconAwesome styleClass="text-orange" value="paw" solid="true"/>
+                <b:iconAwesome styleClass="text-orange" value="bus" solid="true"/>
             </div>
         </div>
 
-        <b:navBar brand="bonjour">
+        <b:navBar brand="#{mbConnection.connectedUser.nameUser} #{mbConnection.connectedUser.firstnameUser}">
             <b:navbarLinks pull="right">
-                <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Accueil" icon-awesome="home" href="index.xhtml"/>
-                <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Mon espace" icon-awesome="user" href="space.xhtml"/>
-                <b:navLink styleClass="#{mbArch.navLinkStyle('gallery.xhtml')}" value="Gallerie" icon-awesome="star" href="gallery.xhtml"/>
-                <b:navLink styleClass="#{mbArch.navLinkStyle('glossary.xhtml')}" value="Glossaire" icon-awesome="book" href="glossary.xhtml"/>
-                <b:navLink styleClass="#{mbArch.navLinkStyle('login.xhtml')}" value="Connexion" icon-awesome="key" href="login.xhtml"/>
+                <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Accueil" icon-awesome="home" href="index.xhtml" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Mon espace" icon-awesome="user" href="space.xhtml" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('gallery.xhtml')}" value="Gallerie" icon-awesome="star" href="gallery.xhtml" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('glossary.xhtml')}" value="Glossaire" icon-awesome="book" href="glossary.xhtml" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('connection.xhtml')}" value="Connexion" icon-awesome="key" href="connection.xhtml"
+                           rendered="#{!mbConnection.isConnected()}" />
+                <b:navCommandLink value = "Déconnexion" action="#{mbConnection.disconnect()}" icon-awesome="key"
+                                  rendered="#{mbConnection.isConnected()}" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('login.xhtml')}" value="Créer un compte" icon-awesome="user-plus" href="login.xhtml" />
+
             </b:navbarLinks>
         </b:navBar>
     </b:form>
@@ -38,7 +43,7 @@
         </b:row>
     </b:container>
     <div class="bg-success footer flex-justify-center flex-align-center">
-        <div>petpal - 2022</div>
+        <div>ABEY - 2022</div>
     </div>
 </h:body>
 

@@ -35,6 +35,38 @@ public class UserDaoImpl implements UserDao {
 
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
+    private static final String REQ_AUTH = "SELECT * FROM user WHERE login_user = ? AND password_user = ?";
+
+    @Override
+    public User authenticate(String login, String password) {
+        User user = null;
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(REQ_AUTH);
+            statement.setString(1,login);
+            statement.setString(2,password);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = new User(
+                        resultSet.getInt("id_user"),
+                        resultSet.getString("login_user"),
+                        resultSet.getString("password_user"),
+                        resultSet.getString("name_user"),
+                        resultSet.getString("firstname_user"),
+                        resultSet.getDate("birthdate_user"),
+                        resultSet.getString("phone_user"),
+                        resultSet.getString("mail_user"),
+                        resultSet.getDate("date_creation_account")
+                        //Faire adress !!!
+                );
+            }
+            connection.close();
+        } catch (SQLException e) {
+            logger.error("Une erreure c'est produite lors de la consultation de l'utilisateur en base de donnée.", e);
+        }
+        return user;
+    }
+
     @Override
     public void registerUser(User user) {
 

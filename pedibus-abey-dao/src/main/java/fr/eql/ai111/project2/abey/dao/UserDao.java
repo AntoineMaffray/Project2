@@ -7,16 +7,7 @@ import java.sql.Date;
 
 public interface UserDao {
 
-    /*
-    void registerUser (
-            String login,
-            String password,
-            String name,
-            String firstname,
-            Date birthDate,
-            String phone,
-            String mail,
-            Date dateCreationAccount);*/
+    User authenticate(String login, String password);
 
     void registerUser (User user);
 
