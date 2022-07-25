@@ -6,11 +6,15 @@ import fr.eql.ai111.project2.abey.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
+@Remote(UserDao.class)
+@Stateless
 public class UserDaoImpl implements UserDao {
 
     String test = "test";
@@ -32,25 +36,57 @@ public class UserDaoImpl implements UserDao {
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
     @Override
-    public User register(
-            String login,
+    public void registerUser(User user) {
+
+        try (Connection connection = dataSource.getConnection()){
+            connection.setAutoCommit(false);
+            int id = registerUserStatementExecution(user, connection);
+            if (id <= 0)
+                connection.rollback();
+            connection.commit();
+        } catch (SQLException e) {
+            logger.error("Une erreur s'est produite lors de l'écriture " +
+                    "de l'utilisateur en base de données", e);
+        }
+    }
+
+    private int registerUserStatementExecution (User user, Connection connection) throws SQLException {
+        int id = 0;
+        PreparedStatement statement = connection.prepareStatement(REQ_REG_USER, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, user.getLoginUser());
+        statement.setString(2, user.getPasswordUser());
+        statement.setString(3, user.getNameUser());
+        statement.setString(4, user.getFirstnameUser());
+        statement.setDate(5, new Date(user.getBirthDateUser().getTime()));
+        statement.setString(6, user.getPhoneUser());
+        statement.setString(7, user.getMailUser());
+        statement.setDate(8, new Date(user.getDateCreationAccountUser().getTime()));
+        int affectedRows = statement.executeUpdate();
+        if (affectedRows > 0) {
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    id = resultSet.getInt(1);
+                    user.setIdUser(id);
+                }
+            } catch (SQLException e) {
+                connection.rollback();
+                logger.error("Une erreur s'est produite lors de la récupération de l'id " +
+                        "de l'utilisateur inséré.", e);
+            }
+        }
+
+        return id;
+    }
+}
+
+
+/*
+String login,
             String password,
             String name,
             String firstname,
             Date birthDate,
             String phone,
             String mail,
-            Date dateCreationAccount) {
-
-        User user = null;
-
-        try {
-            Connection connection = dataSource.getConnection();
-        } catch (SQLException e) {
-            logger.error("Une erreur s'est produite lors de l'écriture " +
-                    "de l'utilisateur en base de données", e);
-        }
-
-        return user;
-    }
-}
+            Date dateCreationAccount)
+ */
