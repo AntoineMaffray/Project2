@@ -1,7 +1,6 @@
 package fr.eql.ai111.project2.abey.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -15,8 +14,11 @@ public class User implements Serializable {
     private String phoneUser;
     private String mailUser;
     private Date dateCreationAccountUser;
+    private int addressIdUser;
 
-    public User(int idUser, String loginUser, String passwordUser, String nameUser, String firstnameUser, Date birthDateUser, String phoneUser, String mailUser, Date dateCreationAccountUser) {
+    public User(int idUser, String loginUser, String passwordUser, String nameUser,
+                String firstnameUser, Date birthDateUser, String phoneUser,
+                String mailUser, Date dateCreationAccountUser, int addressIdUser) {
         this.idUser = idUser;
         this.loginUser = loginUser;
         this.passwordUser = passwordUser;
@@ -26,6 +28,7 @@ public class User implements Serializable {
         this.phoneUser = phoneUser;
         this.mailUser = mailUser;
         this.dateCreationAccountUser = dateCreationAccountUser;
+        this.addressIdUser = addressIdUser;
     }
 
     public int getIdUser() {
@@ -82,5 +85,10 @@ public class User implements Serializable {
     public void setDateCreationAccountUser(Date dateCreationAccountUser) {
         this.dateCreationAccountUser = dateCreationAccountUser;
     }
-
+    public int getAddressIdUser() {
+        return addressIdUser;
+    }
+    public void setAddressIdUser(int addressIdUser) {
+        this.addressIdUser = addressIdUser;
+    }
 }

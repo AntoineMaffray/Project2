@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @ManagedBean(name = "mbLogin")
-@RequestScoped
+@ViewScoped
 public class LoginManagedBean implements Serializable {
 
     @NotNull (message = "veuillez entrer un login")
@@ -36,10 +37,11 @@ public class LoginManagedBean implements Serializable {
     private String newPhoneUser;
     @NotNull (message = "veuillez entrer une adresse mail")
     private String newMailUser;
-    @NotNull
-    private Date newDateCreationAccountUser;
+
+
     private List<Street> streets;
     private Street selectedStreet;
+    @NotNull
     private Address selectedAddress;
 
     @EJB
@@ -56,10 +58,11 @@ public class LoginManagedBean implements Serializable {
         return loginBusiness.findAllStreets();
     }
 
-    public String  registerUser() {
-        User newUser = new User(666, newLoginUser, newPasswordUser, newNameUser, newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser, newBirthDateUser);
+    public void registerUser() {
+        User newUser = new User(0, newLoginUser, newPasswordUser, newNameUser,
+                newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser,
+                newBirthDateUser, selectedAddress.getIdAddress());
         spaceBusiness.registerUser(newUser);
-        return null;
     }
 
     public Street getStreetUpdatedWithAddresses (Street street) {
@@ -111,12 +114,7 @@ public class LoginManagedBean implements Serializable {
     public void setNewMailUser(String newMailUser) {
         this.newMailUser = newMailUser;
     }
-    public Date getNewDateCreationAccountUser() {
-        return newDateCreationAccountUser;
-    }
-    public void setNewDateCreationAccountUser(Date newDateCreationAccountUser) {
-        this.newDateCreationAccountUser = newDateCreationAccountUser;
-    }
+
     public String fullDate (LocalDate date) {
         return DateUtils.fullDate(date);
     }
