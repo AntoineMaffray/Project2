@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 
 @Remote(ConnectionBusiness.class)
 @Stateless
-public class connectionBusinessImpl implements ConnectionBusiness {
+public class ConnectionBusinessImpl implements ConnectionBusiness {
 
     @EJB
     private UserDao userDao;

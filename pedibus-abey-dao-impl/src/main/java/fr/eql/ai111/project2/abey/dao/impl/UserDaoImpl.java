@@ -29,8 +29,9 @@ public class UserDaoImpl implements UserDao {
                     "birthdate_user, " +
                     "phone_user, " +
                     "mail_user, " +
-                    "date_creation_account) " +
-            "values (?, ?, ?, ?, ?, ?, ?, ?) " +
+                    "date_creation_account, " +
+                    "address_id) " +
+            "values (?, ?, ?, ?, ?, ?, ?, ?, ?) " +
             ";";
 
     private final DataSource dataSource = new PedibusAbeyDataSource();
@@ -56,13 +57,13 @@ public class UserDaoImpl implements UserDao {
                         resultSet.getDate("birthdate_user"),
                         resultSet.getString("phone_user"),
                         resultSet.getString("mail_user"),
-                        resultSet.getDate("date_creation_account")
-                        //Faire adress !!!
+                        resultSet.getDate("date_creation_account"),
+                        resultSet.getInt("address_id")
                 );
             }
             connection.close();
         } catch (SQLException e) {
-            logger.error("Une erreure c'est produite lors de la consultation de l'utilisateur en base de donnée.", e);
+            logger.error("Une erreure s'est produite lors de la consultation de l'utilisateur en base de donnée.", e);
         }
         return user;
     }
@@ -93,6 +94,7 @@ public class UserDaoImpl implements UserDao {
         statement.setString(6, user.getPhoneUser());
         statement.setString(7, user.getMailUser());
         statement.setDate(8, new Date(user.getDateCreationAccountUser().getTime()));
+        statement.setInt(9, user.getAddressIdUser());
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
             try (ResultSet resultSet = statement.getGeneratedKeys()) {
@@ -110,15 +112,3 @@ public class UserDaoImpl implements UserDao {
         return id;
     }
 }
-
-
-/*
-String login,
-            String password,
-            String name,
-            String firstname,
-            Date birthDate,
-            String phone,
-            String mail,
-            Date dateCreationAccount)
- */

@@ -1,18 +1,13 @@
 package fr.eql.ai111.project2.abey.business.impl;
 
 import fr.eql.ai111.project2.abey.business.SpaceBusiness;
-import fr.eql.ai111.project2.abey.dao.ChildDao;
-import fr.eql.ai111.project2.abey.dao.SchoolYearDao;
-import fr.eql.ai111.project2.abey.dao.SchoolingDao;
-import fr.eql.ai111.project2.abey.dao.UserDao;
-import fr.eql.ai111.project2.abey.entity.Child;
-import fr.eql.ai111.project2.abey.entity.SchoolYear;
-import fr.eql.ai111.project2.abey.entity.Schooling;
-import fr.eql.ai111.project2.abey.entity.User;
+import fr.eql.ai111.project2.abey.dao.*;
+import fr.eql.ai111.project2.abey.entity.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 
 @Remote(SpaceBusiness.class)
 @Stateless
@@ -23,6 +18,9 @@ public class SpaceBusinessImpl implements SpaceBusiness {
     SchoolingDao schoolingDao;
     SchoolYearDao schoolYearDao;
     ChildDao childDao;
+
+   @EJB
+    AddressDao addressDao;
 
     @Override
     public void registerUser(User user) {
@@ -49,6 +47,13 @@ public class SpaceBusinessImpl implements SpaceBusiness {
     @Override
     public void registerSchoolYear(SchoolYear schoolYear) {
         schoolYearDao.registerSchoolYear(schoolYear);
+    }
+
+    @Override
+    public Street getStreetUpdatedWithAddresses(Street street) {
+        street.setAddresses(new ArrayList<>());
+        street.getAddresses().addAll(addressDao.findByStreet(street));
+        return street;
     }
 
 }
