@@ -4,5 +4,5 @@ import fr.eql.ai111.project2.abey.entity.User;
 
 public interface ConnectionBusiness {
 
-    User authenticate(String login, String password);
+    User    authenticate(String login, String password);
 }

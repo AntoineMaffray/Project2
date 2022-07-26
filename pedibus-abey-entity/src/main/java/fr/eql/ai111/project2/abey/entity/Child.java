@@ -9,19 +9,15 @@ public class Child implements Serializable {
     private String firstnameChild;
     private String nameChild;
     private Date birthDateChild;
-    private int school;
-    private int schoolLevel;
     private int schoolYear;
     private int user1;
     private int user2;
 
-    public Child(int idChild, String firstnameChild, String nameChild, Date birthDateChild, int school, int schoolLevel, int schoolYear, int user1, int user2) {
+    public Child(int idChild, String firstnameChild, String nameChild, Date birthDateChild, int schoolYear, int user1, int user2) {
         this.idChild = idChild;
         this.firstnameChild = firstnameChild;
         this.nameChild = nameChild;
         this.birthDateChild = birthDateChild;
-        this.school = school;
-        this.schoolLevel = schoolLevel;
         this.schoolYear = schoolYear;
         this.user1 = user1;
         this.user2 = user2;
@@ -59,22 +55,6 @@ public class Child implements Serializable {
         this.birthDateChild = birthDateChild;
     }
 
-    public int getSchool() {
-        return school;
-    }
-
-    public void setSchool(int school) {
-        this.school = school;
-    }
-
-    public int getSchoolLevel() {
-        return schoolLevel;
-    }
-
-    public void setSchoolLevel(int schoolLevel) {
-        this.schoolLevel = schoolLevel;
-    }
-
     public int getSchoolYear() {
         return schoolYear;
     }
@@ -98,4 +78,6 @@ public class Child implements Serializable {
     public void setUser2(int user2) {
         this.user2 = user2;
     }
+
+
 }

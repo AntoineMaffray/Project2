@@ -110,4 +110,5 @@ public class LoginManagedBean implements Serializable {
     public String fullDate (LocalDate date) {
         return DateUtils.fullDate(date);
     }
+
 }

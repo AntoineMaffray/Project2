@@ -3,6 +3,7 @@ package fr.eql.ai111.project2.abey.dao.impl;
 import fr.eql.ai111.project2.abey.dao.ChildDao;
 import fr.eql.ai111.project2.abey.dao.impl.connection.PedibusAbeyDataSource;
 import fr.eql.ai111.project2.abey.entity.Child;
+import fr.eql.ai111.project2.abey.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +16,8 @@ import java.sql.*;
     @Remote(ChildDao.class)
     @Stateless
     public class ChildDaoImpl implements ChildDao {
+
+
 
         String test = "test";
 
@@ -31,11 +34,11 @@ import java.sql.*;
         private final DataSource dataSource = new PedibusAbeyDataSource();
 
         @Override
-        public void registerChild(Child child) {
+        public void registerChild(Child child, User user) {
 
             try (Connection connection = dataSource.getConnection()) {
                 connection.setAutoCommit(false);
-                int id = registerChildStatementExecution(child, connection);
+                int id = registerChildStatementExecution(child, user, connection);
                 if (id <= 0)
                     connection.rollback();
                 connection.commit();
@@ -45,12 +48,13 @@ import java.sql.*;
             }
         }
 
-        private int registerChildStatementExecution(Child child, Connection connection) throws SQLException {
+        private int registerChildStatementExecution(Child child, User user, Connection connection) throws SQLException {
             int id = 0;
             PreparedStatement statement = connection.prepareStatement(REQ_REG_CHILD, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, child.getNameChild());
             statement.setString(2, child.getFirstnameChild());
             statement.setDate(3, new Date(child.getBirthDateChild().getTime()));
+            statement.setInt(4, user.getIdUser());
             int affectedRows = statement.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet resultSet = statement.getGeneratedKeys()) {

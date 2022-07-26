@@ -18,6 +18,8 @@ public class connectionBusinessImpl implements ConnectionBusiness {
     @Override
     public User authenticate(String login, String password) {
         return userDao.authenticate(login, password);
-
     }
+
+
+
 }
