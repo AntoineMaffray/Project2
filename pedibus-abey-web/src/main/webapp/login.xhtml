@@ -180,7 +180,7 @@
                                 id="ddlStreets"
                                 value="#{mbLogin.selectedStreet}"
                                 label="Voie"
-                                update="ddlAddresses panAddress">
+                                update="ddlAddresses" >
                             <f:selectItem itemLabel="-"  itemDisabled="true" noSelectionOption="true"/>
                             <f:selectItems
                                     value="#{mbLogin.streets}"
@@ -194,11 +194,10 @@
                         <b:selectOneMenu
                                 id="ddlAddresses"
                                 value="#{mbLogin.selectedAddress}"
-                                label="Numéro de voie."
-                                update="panAddress">
+                                label="Numéro de voie." >
                             <f:selectItem itemLabel="-"  itemDisabled="true" noSelectionOption="true"/>
                             <f:selectItems
-                                    value="#{mbLogin.getStreetUpdatedWithAddresses(mbLogin.selectedStreet).addresses}"
+                                    value="#{(mbLogin.getStreetUpdatedWithAddresses(mbLogin.selectedStreet).addresses)}"
                                     var="address"
                                     itemValue="#{address}"
                                     itemLabel="#{address.streetNumber}"

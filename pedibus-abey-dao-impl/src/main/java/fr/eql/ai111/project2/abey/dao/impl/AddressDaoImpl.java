@@ -24,9 +24,9 @@ public class AddressDaoImpl implements AddressDao {
     private static final Logger logger = LogManager.getLogger();
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
-    private static final String REQ_FIND_BY_STREET = "SELECT s.name_street, a.street_number " +
+    private static final String REQ_FIND_BY_STREET = "SELECT a.id_address, s.name_street, a.street_number " +
             "from address a, street s " +
-            "WHERE a.street_id = ? " +
+            "WHERE a.street_id = ? AND a.street_id = s.id_street " +
             "ORDER BY s.name_street";
 
     @Override
