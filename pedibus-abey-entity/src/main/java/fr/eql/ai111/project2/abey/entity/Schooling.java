@@ -4,15 +4,13 @@ import java.io.Serializable;
 
 public class Schooling implements Serializable {
     private int idSchooling;
-    private int idSchool;
-    private int idSchoolYear;
-    private int idSchoolLevel;
+    private School idSchool;
+    private SchoolLevel idSchoolLevel;
     private int idChild;
 
-    public Schooling(int idSchooling, int idSchool, int idSchoolYear, int idSchoolLevel, int idChild) {
+    public Schooling(int idSchooling, School idSchool, SchoolLevel idSchoolLevel, int idChild) {
         this.idSchooling = idSchooling;
         this.idSchool = idSchool;
-        this.idSchoolYear = idSchoolYear;
         this.idSchoolLevel = idSchoolLevel;
         this.idChild = idChild;
     }
@@ -25,20 +23,20 @@ public class Schooling implements Serializable {
         this.idSchooling = idSchooling;
     }
 
-    public int getIdSchool() {
+    public School getIdSchool() {
         return idSchool;
     }
 
-    public void setIdSchool(int idSchool) {
+    public void setIdSchool(School idSchool) {
         this.idSchool = idSchool;
     }
 
-    public int getIdSchoolYear() {
-        return idSchoolYear;
+    public SchoolLevel getIdSchoolLevel() {
+        return idSchoolLevel;
     }
 
-    public void setIdSchoolYear(int idSchoolYear) {
-        this.idSchoolYear = idSchoolYear;
+    public void setIdSchoolLevel(SchoolLevel idSchoolLevel) {
+        this.idSchoolLevel = idSchoolLevel;
     }
 
     public int getIdChild() {
@@ -47,13 +45,5 @@ public class Schooling implements Serializable {
 
     public void setIdChild(int idChild) {
         this.idChild = idChild;
-    }
-
-    public int getIdSchoolLevel() {
-        return idSchoolLevel;
-    }
-
-    public void setIdSchoolLevel(int idSchoolLevel) {
-        this.idSchoolLevel = idSchoolLevel;
     }
 }

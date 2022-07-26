@@ -28,13 +28,20 @@ public class SpaceBusinessImpl implements SpaceBusiness {
     }
 
     @Override
-    public void registerChild(Child child) {
-        childDao.registerChild(child);
+    public void registerChild(Child child, User user) {
+
     }
 
     @Override
-    public void registerSchooling(Schooling schooling) {
-        schoolingDao.registerschooling(schooling);
+    public void superRegisterChild(Child child, Schooling schooling, User user) {
+        childDao.registerChild(child, user);
+        schoolingDao.registerSchooling(schooling, user);
+    }
+
+
+    @Override
+    public void registerSchooling(Schooling schooling, User user) {
+        schoolingDao.registerSchooling(schooling, user);
     }
 
     @Override

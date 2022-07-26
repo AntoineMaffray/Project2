@@ -22,6 +22,7 @@ public class ConnectionManagedBean implements Serializable {
     private String password;
     private User connectedUser;
 
+
     @EJB
     private ConnectionBusiness connectionBusiness;
 
@@ -67,6 +68,7 @@ public class ConnectionManagedBean implements Serializable {
         connectedUser = null;
         return "/index.xhtml?faces-redirect=true";
     }
+
 
     public String getLogin() {
         return login;

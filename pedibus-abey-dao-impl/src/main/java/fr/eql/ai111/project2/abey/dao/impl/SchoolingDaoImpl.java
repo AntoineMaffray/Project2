@@ -1,7 +1,10 @@
 package fr.eql.ai111.project2.abey.dao.impl;
 import fr.eql.ai111.project2.abey.dao.SchoolingDao;
 import fr.eql.ai111.project2.abey.dao.impl.connection.PedibusAbeyDataSource;
+import fr.eql.ai111.project2.abey.entity.Child;
+import fr.eql.ai111.project2.abey.entity.School;
 import fr.eql.ai111.project2.abey.entity.Schooling;
+import fr.eql.ai111.project2.abey.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,25 +16,26 @@ import java.sql.*;
 @Remote(SchoolingDao.class)
 @Stateless
 public class SchoolingDaoImpl implements SchoolingDao {
+
+    School school = School.HAUT_MESNIL;
     
     private static final Logger logger = LogManager.getLogger();
 
     private static final String REQ_REG_SCHOOLING =
             "insert into schooling (school_id, " +
-                    "school_year_id, " +
                     "school_level_id, " +
                     "child_id) " +
-                    "values (?, ?, ?, ?,?) " +
+                    "values (?, ?, (select child_id from child where id_user = ?)) " +
                     ";";
 
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
     @Override
-    public void registerschooling(Schooling schooling) {
+    public void registerSchooling(Schooling schooling, User user) {
 
         try (Connection connection = dataSource.getConnection()){
             connection.setAutoCommit(false);
-            int id = registerschoolingStatementExecution(schooling, connection);
+            int id = registerSchoolingStatementExecution(schooling, user, connection);
             if (id <= 0)
                 connection.rollback();
             connection.commit();
@@ -41,13 +45,12 @@ public class SchoolingDaoImpl implements SchoolingDao {
         }
     }
 
-    private int registerschoolingStatementExecution (Schooling schooling, Connection connection) throws SQLException {
+    private int registerSchoolingStatementExecution (Schooling schooling, User user, Connection connection) throws SQLException {
         int id = 0;
         PreparedStatement statement = connection.prepareStatement(REQ_REG_SCHOOLING, Statement.RETURN_GENERATED_KEYS);
-        statement.setInt(1, schooling.getIdSchool());
-        statement.setInt(2, schooling.getIdSchoolYear());
-        statement.setInt(3, schooling.getIdSchoolLevel());
-        statement.setInt(4, schooling.getIdChild());
+        statement.setInt(1, schooling.getIdSchool().ordinal()+1);
+        statement.setInt(2, schooling.getIdSchoolLevel().ordinal()+1);
+        statement.setInt(3, user.getIdUser());
 
         int affectedRows = statement.executeUpdate();
         if (affectedRows > 0) {
