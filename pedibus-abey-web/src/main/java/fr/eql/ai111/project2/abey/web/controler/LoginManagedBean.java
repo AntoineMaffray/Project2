@@ -1,9 +1,13 @@
 package fr.eql.ai111.project2.abey.web.controler;
 
+import fr.eql.ai111.project2.abey.business.LoginBusiness;
 import fr.eql.ai111.project2.abey.business.SpaceBusiness;
+import fr.eql.ai111.project2.abey.entity.Address;
+import fr.eql.ai111.project2.abey.entity.Street;
 import fr.eql.ai111.project2.abey.entity.User;
 import fr.eql.ai111.project2.abey.web.util.DateUtils;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -12,6 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @ManagedBean(name = "mbLogin")
 @RequestScoped
@@ -33,9 +38,23 @@ public class LoginManagedBean implements Serializable {
     private String newMailUser;
     @NotNull
     private Date newDateCreationAccountUser;
+    private List<Street> streets;
+    private Street selectedStreet;
+    private Address selectedAddress;
 
     @EJB
     private SpaceBusiness spaceBusiness;
+    @EJB
+    private LoginBusiness loginBusiness;
+
+    @PostConstruct
+    public void init() {
+        streets = findAllStreets();
+    }
+
+    public List<Street> findAllStreets() {
+        return loginBusiness.findAllStreets();
+    }
 
     public String  registerUser() {
         User newUser = new User(666, newLoginUser, newPasswordUser, newNameUser, newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser, newBirthDateUser);
@@ -43,10 +62,12 @@ public class LoginManagedBean implements Serializable {
         return null;
     }
 
-//    public void resetSelectedCity() {
-//        selectedCity = null;
-
-//    }
+    public Street getStreetUpdatedWithAddresses (Street street) {
+        if (street != null) {
+            return loginBusiness.getStreetUpdatedWithAddresses(street);
+        }
+        return null;
+    }
 
     public String getNewLoginUser() {
         return newLoginUser;
@@ -99,4 +120,24 @@ public class LoginManagedBean implements Serializable {
     public String fullDate (LocalDate date) {
         return DateUtils.fullDate(date);
     }
+
+    public List<Street> getStreets() {
+        return streets;
+    }
+    public void setStreets(List<Street> streets) {
+        this.streets = streets;
+    }
+    public Street getSelectedStreet() {
+        return selectedStreet;
+    }
+    public void setSelectedStreet(Street selectedStreet) {
+        this.selectedStreet = selectedStreet;
+    }
+    public Address getSelectedAddress() {
+        return selectedAddress;
+    }
+    public void setSelectedAddress(Address selectedAddress) {
+        this.selectedAddress = selectedAddress;
+    }
+
 }

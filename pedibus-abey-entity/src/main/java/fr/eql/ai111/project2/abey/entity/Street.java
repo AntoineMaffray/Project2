@@ -8,7 +8,7 @@ public class Street implements Serializable {
 
     private int idStreet;
     private String nameStreet;
-    private List<Address> streetNumbers = new ArrayList<>();
+    private List<Address> addresses = new ArrayList<>();
 
     public Street(int idStreet, String nameStreet) {
         this.idStreet = idStreet;
@@ -27,10 +27,10 @@ public class Street implements Serializable {
     public void setNameStreet(String nameStreet) {
         this.nameStreet = nameStreet;
     }
-    public List<Address> getStreetNumbers() {
-        return streetNumbers;
+    public List<Address> getAddresses() {
+        return addresses;
     }
-    public void setStreetNumbers(List<Address> streetNumbers) {
-        this.streetNumbers = streetNumbers;
+    public void setAddresses(List<Address> streetNumbers) {
+        this.addresses = streetNumbers;
     }
 }

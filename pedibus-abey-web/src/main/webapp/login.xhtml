@@ -177,32 +177,31 @@
                 <b:row>
                     <b:column styleClass="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-2 col-lg-offset-2">
                         <b:selectOneMenu
-                                valueChangeListener="#{mbLogin.resetSelectedCat()}"
-                                id="ddlOwners"
-                                value="#{mbGallery.selectedOwner}"
-                                label="Propriétaire"
-                                update="ddlCats panCat">
+                                id="ddlStreets"
+                                value="#{mbLogin.selectedStreet}"
+                                label="Voie"
+                                update="ddlAddresses panAddress">
                             <f:selectItem itemLabel="-"  itemDisabled="true" noSelectionOption="true"/>
                             <f:selectItems
-                                    value="#{mbGallery.owners}"
-                                    var="owner"
-                                    itemValue="#{owner}"
-                                    itemLabel="#{owner.name} #{owner.surname}"
+                                    value="#{mbLogin.streets}"
+                                    var="street"
+                                    itemValue="#{street}"
+                                    itemLabel="#{street.nameStreet}"
                             />
                         </b:selectOneMenu>
                     </b:column>
                     <b:column styleClass="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-3 col-md-offset-0 col-lg-offset-0">
                         <b:selectOneMenu
-                                id="ddlCats"
-                                value="#{mbGallery.selectedCat}"
-                                label="Chat"
-                                update="panCat">
+                                id="ddlAddresses"
+                                value="#{mbLogin.selectedAddress}"
+                                label="Numéro de voie."
+                                update="panAddress">
                             <f:selectItem itemLabel="-"  itemDisabled="true" noSelectionOption="true"/>
                             <f:selectItems
-                                    value="#{(mbGallery.getOwnerUpdatedWithPets(mbGallery.selectedOwner).pets)}"
-                                    var="cat"
-                                    itemValue="#{cat}"
-                                    itemLabel="#{cat.name}"
+                                    value="#{mbLogin.getStreetUpdatedWithAddresses(mbLogin.selectedStreet).addresses}"
+                                    var="address"
+                                    itemValue="#{address}"
+                                    itemLabel="#{address.streetNumber}"
                             />
                         </b:selectOneMenu>
                     </b:column>
