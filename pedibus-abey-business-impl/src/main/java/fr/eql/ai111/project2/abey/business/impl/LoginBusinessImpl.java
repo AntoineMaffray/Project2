@@ -23,7 +23,7 @@ public class LoginBusinessImpl implements LoginBusiness {
 
     @Override
     public Street getStreetUpdatedWithAddresses(Street street) {
-        street.getAddresses().addAll(addressDao.findByStreet(street));
+        street.setAddresses(addressDao.findByStreet(street));
         return street;
     }
 
