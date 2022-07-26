@@ -14,7 +14,7 @@
 
 # Java project
 bin/
-*.properties
+**/*.properties
 
 # Maven project
 **/target/
