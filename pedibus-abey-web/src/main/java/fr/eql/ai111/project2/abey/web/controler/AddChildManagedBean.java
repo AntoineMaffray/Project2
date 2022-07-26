@@ -40,9 +40,8 @@ public class AddChildManagedBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        schoolLevels = Stream.of(School.values())
-                .map(breed -> StringUtils.firstLetterCapitalized(breed.toString()))
-                .collect(Collectors.toList());;
+        fillSchools();
+        fillSchoolLevels();
     }
 
 //    public String registerChild () {
@@ -59,12 +58,12 @@ public class AddChildManagedBean implements Serializable {
 
 
 
-    public String superRegisterChild() {
+    public void superRegisterChild() {
 
         Child child = new Child(666, newFirstnameChild, newNameChild,
                 newBirthDateChild, 0, 0, 0);
         Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 1);
-        return null;
+//        spaceBusiness.superRegisterChild(child, schooling,);
     }
 
     public String getNewNameChild() {
@@ -127,16 +126,16 @@ public class AddChildManagedBean implements Serializable {
         return schoolLevels;
     }
 
-    public List<String> fillSchools () {
-        schools.add(Arrays.toString(School.values()));
-        return schools;
-    }
-
-    public List<String> fillSchoolLevels () {
-        schoolLevels = Stream.of(School.values())
+    public void fillSchools () {
+        schools = Stream.of(School.values())
                 .map(breed -> StringUtils.firstLetterCapitalized(breed.toString()))
                 .collect(Collectors.toList());;
-        return schoolLevels;
+    }
+
+    public void fillSchoolLevels () {
+        schoolLevels = Stream.of(SchoolLevel.values())
+                .map(breed -> StringUtils.firstLetterCapitalized(breed.toString()))
+                .collect(Collectors.toList());;
     }
 
     public void setSchoollevels(List<String> schoollevels) {

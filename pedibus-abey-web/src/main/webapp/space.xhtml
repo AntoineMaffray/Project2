@@ -72,15 +72,15 @@
                     </b:column>
                 </b:row>
                 <b:row>
-                <b:column style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
+                <b:column style-class="col-sm-2 col-md-2">
                     <h:outputText value="Ecole" />
                 </b:column>
-                <b:column style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
+                <b:column style-class="col-xs-offset-1 col-xs-10">
                     <b:selectOneMenu id="newSchool" value="#{mbaddchild.newSchool}">
                         <f:selectItem itemLabel="Veuillez sélectionner une école"
                                       itemDisabled="true" noSelectionOption="true"/>
                         <f:selectItems
-                                value="#{mbaddchild.fillSchools()}"
+                                value="#{mbaddchild.schools}"
                                 var="school"
                                 itemValue="#{school}"
                                 itemLabel="#{school}"
@@ -89,18 +89,18 @@
                 </b:column>
                 </b:row>
                 <b:row>
-                <b:column style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
+                <b:column style-class="col-sm-2 col-md-2">
                     <h:outputText value="Niveau scolaire" />
                 </b:column>
-                <b:column style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
+                <b:column style-class="col-xs-offset-1 col-xs-10">
                     <b:selectOneMenu id="newSchoolLevel" value="#{mbaddchild.newSchoolLevel}">
                         <f:selectItem itemLabel="Veuillez sélectionner un niveau scolaire"
                                       itemDisabled="true" noSelectionOption="true"/>
                         <f:selectItems
                                 value="#{mbaddchild.schoolLevels}"
-                                var="schoolLevels"
-                                itemValue="#{schoolLevels}"
-                                itemLabel="#{schoolLevels}"
+                                var="schoolLevel"
+                                itemValue="#{schoolLevel}"
+                                itemLabel="#{schoolLevel}"
                         />
                     </b:selectOneMenu>
                 </b:column>
