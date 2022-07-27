@@ -9,28 +9,28 @@
 <ui:composition template="/arch.xhtml">
 
     <ui:define name="head">
-    <title>Ajout d'un enfant</title>
+        <title>Participer au Pédibus</title>
     </ui:define>
 
     <ui:define name="content">
-            <b:form id="loginForm">
+        <b:form id="loginForm">
             <b:panel
                     style-class="mt-3rem mb-5rem
 				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
                 <b:row>
                     <b:column
                             style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Prénom" />
+                        <h:outputText value="Rôle souhaité" />
                     </b:column>
                     <b:column
                             style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Prénom" />
+                        <h:outputText value="Rôle souhaité" />
                     </b:column>
                     <b:column
                             style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpFirstName"
-                                     placeholder="Veuillez entrer votre prénom"
-                                     value="#{mbaddchild.newFirstnameChild}">
+                                     placeholder="Veuillez choisir le rôle souhaité"
+                                     value="#{mb.newFirstnameChild}">
                             <f:facet name="prepend">
                                 <b:iconAwesome name="user" />
                             </f:facet>
@@ -72,38 +72,38 @@
                     </b:column>
                 </b:row>
                 <b:row>
-                <b:column style-class="col-sm-2 col-md-2">
-                    <h:outputText value="Ecole" />
-                </b:column>
-                <b:column style-class="col-xs-offset-1 col-xs-10">
-                    <b:selectOneMenu id="newSchool" value="#{mbaddchild.newSchool}">
-                        <f:selectItem itemLabel="Veuillez sélectionner une école"
-                                      itemDisabled="true" noSelectionOption="true"/>
-                        <f:selectItems
-                                value="#{mbaddchild.schools}"
-                                var="school"
-                                itemValue="#{school}"
-                                itemLabel="#{school.name()}"
-                        />
-                    </b:selectOneMenu>
-                </b:column>
+                    <b:column style-class="col-sm-2 col-md-2">
+                        <h:outputText value="Ecole" />
+                    </b:column>
+                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                        <b:selectOneMenu id="newSchool" value="#{mbaddchild.newSchool}">
+                            <f:selectItem itemLabel="Veuillez sélectionner une école"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbaddchild.schools}"
+                                    var="school"
+                                    itemValue="#{school}"
+                                    itemLabel="#{school.name()}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
                 </b:row>
                 <b:row>
-                <b:column style-class="col-sm-2 col-md-2">
-                    <h:outputText value="Niveau scolaire" />
-                </b:column>
-                <b:column style-class="col-xs-offset-1 col-xs-10">
-                    <b:selectOneMenu id="newSchoolLevel" value="#{mbaddchild.newSchoolLevel}">
-                        <f:selectItem itemLabel="Veuillez sélectionner un niveau scolaire"
-                                      itemDisabled="true" noSelectionOption="true"/>
-                        <f:selectItems
-                                value="#{mbaddchild.schoolLevels}"
-                                var="schoolLevel"
-                                itemValue="#{schoolLevel}"
-                                itemLabel="#{schoolLevel.name()}"
-                        />
-                    </b:selectOneMenu>
-                </b:column>
+                    <b:column style-class="col-sm-2 col-md-2">
+                        <h:outputText value="Niveau scolaire" />
+                    </b:column>
+                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                        <b:selectOneMenu id="newSchoolLevel" value="#{mbaddchild.newSchoolLevel}">
+                            <f:selectItem itemLabel="Veuillez sélectionner un niveau scolaire"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbaddchild.schoolLevels}"
+                                    var="schoolLevel"
+                                    itemValue="#{schoolLevel}"
+                                    itemLabel="#{schoolLevel.name()}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
                 </b:row>
                 <b:row>
                     <b:column

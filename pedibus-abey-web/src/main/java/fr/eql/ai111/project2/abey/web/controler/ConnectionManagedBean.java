@@ -2,6 +2,7 @@ package fr.eql.ai111.project2.abey.web.controler;
 
 
 import fr.eql.ai111.project2.abey.business.ConnectionBusiness;
+import fr.eql.ai111.project2.abey.business.SpaceBusiness;
 import fr.eql.ai111.project2.abey.entity.User;
 
 import javax.ejb.EJB;
@@ -25,6 +26,7 @@ public class ConnectionManagedBean implements Serializable {
 
     @EJB
     private ConnectionBusiness connectionBusiness;
+
 
     public String connect() {
         String forward;

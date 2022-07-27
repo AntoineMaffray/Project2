@@ -34,7 +34,7 @@ import java.sql.*;
         private final DataSource dataSource = new PedibusAbeyDataSource();
 
         @Override
-        public void registerChild(Child child, User user) {
+        public int registerChild(Child child, User user) {
 
             try (Connection connection = dataSource.getConnection()) {
                 connection.setAutoCommit(false);
@@ -46,6 +46,9 @@ import java.sql.*;
                 logger.error("Une erreur s'est produite lors de l'écriture " +
                         "de l'utilisateur en base de données", e);
             }
+
+
+            return child.getIdChild();
         }
 
         private int registerChildStatementExecution(Child child, User user, Connection connection) throws SQLException {
@@ -61,6 +64,7 @@ import java.sql.*;
                     if (resultSet.next()) {
                         id = resultSet.getInt(1);
                         child.setIdChild(id);
+                        System.out.println("Couche dao : " + id);
                     }
                 } catch (SQLException e) {
                     connection.rollback();
