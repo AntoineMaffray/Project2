@@ -7,42 +7,42 @@ import fr.eql.ai111.project2.abey.entity.*;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Remote(SpaceBusiness.class)
 @Stateless
+@Transactional
 public class SpaceBusinessImpl implements SpaceBusiness {
 
     @EJB
     UserDao userDao;
+
+    @EJB
     SchoolingDao schoolingDao;
+
+    @EJB
     SchoolYearDao schoolYearDao;
+
+    @EJB
     ChildDao childDao;
 
    @EJB
-    AddressDao addressDao;
+   AddressDao addressDao;
 
     @Override
     public void registerUser(User user) {
         userDao.registerUser(user);
     }
 
-    @Override
-    public void registerChild(Child child, User user) {
-
-    }
 
     @Override
     public void superRegisterChild(Child child, Schooling schooling, User user) {
-        childDao.registerChild(child, user);
-        schoolingDao.registerSchooling(schooling, user);
+        int childId = childDao.registerChild(child, user);
+        System.out.println(childId);
+        schoolingDao.registerSchooling(schooling, user, childId);
     }
 
-
-    @Override
-    public void registerSchooling(Schooling schooling, User user) {
-        schoolingDao.registerSchooling(schooling, user);
-    }
 
     @Override
     public void registerSchoolYear(SchoolYear schoolYear) {

@@ -7,7 +7,9 @@ import fr.eql.ai111.project2.abey.web.util.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,11 +20,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @ManagedBean(name = "mbaddchild")
-@RequestScoped
+@ViewScoped
 public class AddChildManagedBean implements Serializable {
 
-    private List<String> schools = new ArrayList<>();
-    private List<String> schoolLevels = new ArrayList<>();
+    @ManagedProperty(value = "#{mbConnection.connectedUser}")
+    private User connectedUser;
+
+    private List<School> schools = new ArrayList<>();
+    private List<SchoolLevel> schoolLevels = new ArrayList<>();
 
     @NotNull(message = "veuillez entrer un prénom")
     private String newNameChild;
@@ -59,11 +64,11 @@ public class AddChildManagedBean implements Serializable {
 
 
     public void superRegisterChild() {
-
+        System.out.println("ollaaaah");
         Child child = new Child(666, newFirstnameChild, newNameChild,
-                newBirthDateChild, 0, 0, 0);
-        Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 1);
-//        spaceBusiness.superRegisterChild(child, schooling,);
+                newBirthDateChild, 1, 666, 0);
+        Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 666);
+        spaceBusiness.superRegisterChild(child, schooling, connectedUser);
     }
 
     public String getNewNameChild() {
@@ -114,31 +119,35 @@ public class AddChildManagedBean implements Serializable {
         this.spaceBusiness = spaceBusiness;
     }
 
-    public List<String> getSchools() {
+    public List<School> getSchools() {
         return schools;
     }
 
-    public void setSchools(List<String> schools) {
+    public void setSchools(List<School> schools) {
         this.schools = schools;
     }
 
-    public List<String> getSchoolLevels() {
+    public List<SchoolLevel> getSchoolLevels() {
         return schoolLevels;
     }
 
+    public void setSchoolLevels(List<SchoolLevel> schoolLevels) {
+        this.schoolLevels = schoolLevels;
+    }
+
     public void fillSchools () {
-        schools = Stream.of(School.values())
-                .map(breed -> StringUtils.firstLetterCapitalized(breed.toString()))
-                .collect(Collectors.toList());;
+        schools = Arrays.stream(School.values()).collect(Collectors.toList());
     }
 
     public void fillSchoolLevels () {
-        schoolLevels = Stream.of(SchoolLevel.values())
-                .map(breed -> StringUtils.firstLetterCapitalized(breed.toString()))
-                .collect(Collectors.toList());;
+        schoolLevels = Arrays.stream(SchoolLevel.values()).collect(Collectors.toList());
     }
 
-    public void setSchoollevels(List<String> schoollevels) {
-        this.schoolLevels = schoollevels;
+    public User getConnectedUser() {
+        return connectedUser;
+    }
+
+    public void setConnectedUser(User connectedUser) {
+        this.connectedUser = connectedUser;
     }
 }

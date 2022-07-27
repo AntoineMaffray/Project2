@@ -83,7 +83,7 @@
                                 value="#{mbaddchild.schools}"
                                 var="school"
                                 itemValue="#{school}"
-                                itemLabel="#{school}"
+                                itemLabel="#{school.name()}"
                         />
                     </b:selectOneMenu>
                 </b:column>
@@ -100,7 +100,7 @@
                                 value="#{mbaddchild.schoolLevels}"
                                 var="schoolLevel"
                                 itemValue="#{schoolLevel}"
-                                itemLabel="#{schoolLevel}"
+                                itemLabel="#{schoolLevel.name()}"
                         />
                     </b:selectOneMenu>
                 </b:column>
