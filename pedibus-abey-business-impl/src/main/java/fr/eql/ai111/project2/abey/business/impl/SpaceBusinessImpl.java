@@ -39,7 +39,6 @@ public class SpaceBusinessImpl implements SpaceBusiness {
     @Override
     public void superRegisterChild(Child child, Schooling schooling, User user) {
         int childId = childDao.registerChild(child, user);
-        System.out.println(childId);
         schoolingDao.registerSchooling(schooling, user, childId);
     }
 
