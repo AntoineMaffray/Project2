@@ -1,25 +1,25 @@
 package fr.eql.ai111.project2.abey.entity;
 
-public class Participation {
+public class Preference {
 
-    private int participationId;
+    private int preferenceId;
     private int userId;
     private TypicalDay typicalDayId;
     private  TimeSlot timeSlotId;
 
-    public Participation(int participationId, int userId, TypicalDay typicalDayId, TimeSlot timeSlotId) {
-        this.participationId = participationId;
+    public Preference(int preferenceId, int userId, TypicalDay typicalDayId, TimeSlot timeSlotId) {
+        this.preferenceId = preferenceId;
         this.userId = userId;
         this.typicalDayId = typicalDayId;
         this.timeSlotId = timeSlotId;
     }
 
-    public int getParticipationId() {
-        return participationId;
+    public int getpreferenceId() {
+        return preferenceId;
     }
 
-    public void setParticipationId(int participationId) {
-        this.participationId = participationId;
+    public void setpreferenceId(int preferenceId) {
+        this.preferenceId = preferenceId;
     }
 
     public int getUserId() {
