@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "mbTraffic")
@@ -17,11 +18,19 @@ import java.util.List;
 public class TrafficManagedBean implements Serializable {
 
     private List<Line> lines;
+    private List<Stop> stops;
+    private  List<Stop> stopsToSave = new ArrayList<>();
 
+    // Line visualising.
     @NotNull(message = "Veuillez renseigner une ligne")
     private Line selectedLine;
     @NotNull(message = "Veuillez renseigner un arrêt")
     private Stop selectedStop;
+    // Line creation.
+    @NotNull(message = "Veuillez renseigner une ligne")
+    private String newNameLine;
+
+
 
     @EJB
     private TrafficBusiness trafficBusiness;
@@ -29,7 +38,9 @@ public class TrafficManagedBean implements Serializable {
     @PostConstruct
     public void init() {
         lines = findAllLines();
+        stops = findAllStops();
     }
+
 
     public Line getLineUpdatedWithStops (Line line) {
         if(line != null) {
@@ -38,14 +49,59 @@ public class TrafficManagedBean implements Serializable {
         return null;
     }
 
+    public void createLine() {
+        Line newLine = new Line(0, newNameLine);
+        int idLigne = trafficBusiness.createLine(newLine);
+        trafficBusiness.addStopsToSaveToDb(stopsToSave, newLine, idLigne);
+    }
+
+    public void addStop() {
+        stopsToSave.add(selectedStop);
+    }
+
+    public void moveUp(Stop arret) {
+
+        int newIndex = stopsToSave.indexOf(arret) -1;
+        if (newIndex <0) {
+            newIndex ++ ;
+        }
+        stopsToSave.remove(arret);
+        stopsToSave.add(newIndex,arret);
+    }
+
+    public void moveDown(Stop arret) {
+        int newIndex = stopsToSave.indexOf(arret) +1;
+        if (newIndex <0) {
+            newIndex -- ;
+        }
+        stopsToSave.remove(arret);
+        stopsToSave.add(newIndex, arret);
+    }
+
+    public List<Stop> findAllStops () {
+        return trafficBusiness.findAllStops();
+    }
     public List<Line> findAllLines () {
         return trafficBusiness.findAllLines();
+    }
+
+    public List<Stop> getStopsToSave() {
+        return stopsToSave;
+    }
+    public void setStopsToSave(List<Stop> stopsToSave) {
+        this.stopsToSave = stopsToSave;
     }
     public List<Line> getLines() {
         return lines;
     }
     public void setLines(List<Line> lines) {
         this.lines = lines;
+    }
+    public List<Stop> getStops() {
+        return stops;
+    }
+    public void setStops(List<Stop> stops) {
+        this.stops = stops;
     }
     public Line getSelectedLine() {
         return selectedLine;
@@ -59,4 +115,11 @@ public class TrafficManagedBean implements Serializable {
     public void setSelectedStop(Stop selectedStop) {
         this.selectedStop = selectedStop;
     }
+    public String getNewNameLine() {
+        return newNameLine;
+    }
+    public void setNewNameLine(String newNameLine) {
+        this.newNameLine = newNameLine;
+    }
+
 }

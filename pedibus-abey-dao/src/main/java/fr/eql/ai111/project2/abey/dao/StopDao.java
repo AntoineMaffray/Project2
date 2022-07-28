@@ -8,4 +8,6 @@ import java.util.List;
 public interface StopDao {
 
     List<Stop> findByLine (Line line);
+    List<Stop> findAllStops ();
+
 }
