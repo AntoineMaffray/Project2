@@ -25,13 +25,16 @@
                 <b:dropMenu value="Espace utilisateur" iconAwesome="user"
                             rendered="#{mbConnection.isConnected()}">
                     <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Ajouter un enfant" href="space.xhtml"/>
-                    <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Choisir un rôle" href="role.xhtml"/>
+                    <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Participer au pédibus" href="participation.xhtml"/>
                 </b:dropMenu>
                 <b:dropMenu value="Traffic" iconAwesome="bus"
                             rendered="#{mbConnection.isConnected()}">
                     <b:navLink styleClass="#{mbArch.navLinkStyle('traffic.xhtml')}" value="Consulter les lignes" href="traffic.xhtml"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('createLine.xhtml')}" value="Créer une ligne" href="createLine.xhtml"/>
                 </b:dropMenu>
+                <b:navLink styleClass="#{mbArch.navLinkStyle('addStop.xhtml.xhtml')}" value="Ajouter un arrêt" href="addStop.xhtml"/>
+                <b:navLink styleClass="#{mbArch.navLinkStyle('traffic.xhtml')}" value="Trafic" icon-awesome="route" href="traffic.xhtml" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('glossary.xhtml')}" value="Glossaire" icon-awesome="book" href="glossary.xhtml" />
                 <b:navLink styleClass="#{mbArch.navLinkStyle('connection.xhtml')}" value="Connexion" icon-awesome="key" href="connection.xhtml"
                            rendered="#{!mbConnection.isConnected()}" />
                 <b:navCommandLink value = "Déconnexion" action="#{mbConnection.disconnect()}" icon-awesome="key"

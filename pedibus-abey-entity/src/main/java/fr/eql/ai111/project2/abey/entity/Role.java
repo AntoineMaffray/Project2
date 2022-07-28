@@ -1,6 +1,6 @@
 package fr.eql.ai111.project2.abey.entity;
 
 public enum Role {
-    DRIVER,
-    CODRIVER
+    PILOTE_DE_LIGNE,
+    ACCOMPAGNATEUR
 }

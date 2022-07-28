@@ -58,18 +58,18 @@ public class LoginManagedBean implements Serializable {
         return loginBusiness.findAllStreets();
     }
 
-    public void registerUser() {
-        User newUser = new User(0, newLoginUser, newPasswordUser, newNameUser,
-                newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser,
-                newBirthDateUser, selectedAddress.getIdAddress());
-        spaceBusiness.registerUser(newUser);
-    }
-
     public Street getStreetUpdatedWithAddresses (Street street) {
         if (street != null) {
             return loginBusiness.getStreetUpdatedWithAddresses(street);
         }
         return null;
+    }
+
+    public void registerUser() {
+        User newUser = new User(0, newLoginUser, newPasswordUser, newNameUser,
+                newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser,
+                newBirthDateUser, selectedAddress.getIdAddress());
+        spaceBusiness.registerUser(newUser);
     }
 
     public String getNewLoginUser() {

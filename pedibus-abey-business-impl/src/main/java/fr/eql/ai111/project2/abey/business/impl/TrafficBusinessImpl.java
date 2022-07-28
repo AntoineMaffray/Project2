@@ -1,10 +1,16 @@
 package fr.eql.ai111.project2.abey.business.impl;
 
 import fr.eql.ai111.project2.abey.business.TrafficBusiness;
+import fr.eql.ai111.project2.abey.dao.AddressDao;
 import fr.eql.ai111.project2.abey.dao.LineDao;
 import fr.eql.ai111.project2.abey.dao.StopDao;
+import fr.eql.ai111.project2.abey.dao.StreetDao;
+import fr.eql.ai111.project2.abey.entity.Address;
 import fr.eql.ai111.project2.abey.entity.Line;
 import fr.eql.ai111.project2.abey.entity.Stop;
+
+import fr.eql.ai111.project2.abey.entity.Stop;
+import fr.eql.ai111.project2.abey.entity.Street;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -21,6 +27,11 @@ public class TrafficBusinessImpl implements TrafficBusiness {
     @EJB
     private StopDao stopDao;
 
+    @Override
+    public void addStopStatement(Stop stop) {
+        stopDao.addStop(stop);
+    }
+
     @EJB
     private LineDao newLineDao;
 
@@ -34,6 +45,7 @@ public class TrafficBusinessImpl implements TrafficBusiness {
     public List<Line> findAllLines() {
         return lineDao.findAllLines();
     }
+
 
     @Override
     public List<Stop> findAllStops() {
