@@ -60,7 +60,7 @@ public class TrafficManagedBean implements Serializable {
         trafficBusiness.addStopsToSaveToDb(stopsToSave, newLine, idLigne);
     }
 
-    public void addStop() {
+    public void addStopToLine() {
         stopsToSave.add(selectedStop);
     }
 
