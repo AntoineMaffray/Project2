@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/arch.xhtml">
+
+    <ui:define name="head">
+        <title>Participer au Pédibus</title>
+    </ui:define>
+
+    <ui:define name="content">
+        <b:form id="registerRoleForm">
+            <b:panel
+                    style-class="mt-3rem mb-5rem
+				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
+                <b:row>
+                    <b:column style-class="col-sm-2 col-md-2">
+                        <h:outputText value="Rôle" />
+                    </b:column>
+                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                        <b:selectOneMenu id="role" value="#{mbpreference.newRole}">
+                            <f:selectItem itemLabel="Veuillez choisir un rôle"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbpreference.roles}"
+                                    var="role"
+                                    itemValue="#{role}"
+                                    itemLabel="#{role.name()}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
+                    <b:row>
+                        <b:column
+                                style-class="p-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4">
+                            <b:commandButton style-class="w-100" value="Enregistrer mes informations"
+                                             action="#{mbpreference.registerParticipation()}" />
+                        </b:column>
+                    </b:row>
+
+                </b:row>
+            </b:panel>
+        </b:form>
+        <b:form id="RegisterPreferenceForm">
+            <b:panel
+                    style-class="mt-3rem mb-5rem
+				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
+                <b:row>
+                    <b:column style-class="col-sm-2 col-md-2">
+                        <h:outputText value="Préférences de participation" />
+                    </b:column>
+                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                        <b:selectOneMenu id="c" value="#{mbpreference.newTypicalDay}">
+                            <f:selectItem itemLabel="Veuillez sélectionner un jour"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbpreference.typicalDays}"
+                                    var="typicalDay"
+                                    itemValue="#{typicalDay}"
+                                    itemLabel="#{typicalDay.name()}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
+                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                        <b:selectOneMenu id="d" value="#{mbpreference.newTimeSlot}">
+                            <f:selectItem itemLabel="Veuillez sélectionner un créneau horaire"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbpreference.timeSlots}"
+                                    var="timeSlot"
+                                    itemValue="#{timeSlot}"
+                                    itemLabel="#{timeSlot.name()}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column
+                            style-class="p-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4">
+                        <b:commandButton style-class="w-100" value="Enregistrer mes informations"
+                                         action="#{mbpreference.registerPreference()}" />
+                    </b:column>
+                </b:row>
+            </b:panel>
+        </b:form>
+    </ui:define>
+
+
+</ui:composition>
+
+</html>

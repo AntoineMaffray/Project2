@@ -1,6 +1,8 @@
 package fr.eql.ai111.project2.abey.entity;
 
-public class Preference {
+import java.io.Serializable;
+
+public class Preference implements Serializable {
 
     private int preferenceId;
     private int userId;

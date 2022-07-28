@@ -17,8 +17,6 @@ import java.sql.*;
 @Stateless
 public class SchoolingDaoImpl implements SchoolingDao {
 
-    School school = School.HAUT_MESNIL;
-    
     private static final Logger logger = LogManager.getLogger();
 
     private static final String REQ_REG_SCHOOLING =

@@ -64,7 +64,6 @@ public class AddChildManagedBean implements Serializable {
 
 
     public void superRegisterChild() {
-        System.out.println("ollaaaah");
         Child child = new Child(666, newFirstnameChild, newNameChild,
                 newBirthDateChild, 1, 666, 0);
         Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 666);
