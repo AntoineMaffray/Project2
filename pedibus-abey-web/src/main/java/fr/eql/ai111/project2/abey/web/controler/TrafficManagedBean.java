@@ -1,6 +1,7 @@
 package fr.eql.ai111.project2.abey.web.controler;
 
 import fr.eql.ai111.project2.abey.business.TrafficBusiness;
+import fr.eql.ai111.project2.abey.entity.Address;
 import fr.eql.ai111.project2.abey.entity.Line;
 import fr.eql.ai111.project2.abey.entity.Stop;
 
@@ -22,6 +23,10 @@ public class TrafficManagedBean implements Serializable {
     private Line selectedLine;
     @NotNull(message = "Veuillez renseigner un arrêt")
     private Stop selectedStop;
+    @NotNull(message = "Veuillez choisir un nom")
+    private String newStopName;
+    @NotNull(message = "Veuillez renseigner un arrêt")
+    private Address newStopAddress;
 
     @EJB
     private TrafficBusiness trafficBusiness;
@@ -36,6 +41,14 @@ public class TrafficManagedBean implements Serializable {
             return trafficBusiness.getLineUpdatedWithStops(line);
         }
         return null;
+    }
+
+    public void addStop () {
+        System.out.println("on rentre dans la méthode");
+        Stop stop = new Stop(666, newStopName, newStopAddress.getIdAddress());
+        System.out.println("nouvel arrêt créé");
+        trafficBusiness.addStopStatement(stop);
+        System.out.println("méthode ajout lancée");
     }
 
     public List<Line> findAllLines () {
@@ -58,5 +71,21 @@ public class TrafficManagedBean implements Serializable {
     }
     public void setSelectedStop(Stop selectedStop) {
         this.selectedStop = selectedStop;
+    }
+
+    public String getNewStopName() {
+        return newStopName;
+    }
+
+    public void setNewStopName(String newStopName) {
+        this.newStopName = newStopName;
+    }
+
+    public Address getNewStopAddress() {
+        return newStopAddress;
+    }
+
+    public void setNewStopAddress(Address newStopAddress) {
+        this.newStopAddress = newStopAddress;
     }
 }

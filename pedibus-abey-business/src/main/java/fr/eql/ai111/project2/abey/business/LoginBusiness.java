@@ -8,4 +8,5 @@ public interface LoginBusiness {
 
     Street getStreetUpdatedWithAddresses (Street street);
     List<Street> findAllStreets();
+
 }
