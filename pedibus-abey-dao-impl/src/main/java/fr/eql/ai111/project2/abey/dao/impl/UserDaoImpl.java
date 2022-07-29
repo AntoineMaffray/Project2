@@ -10,8 +10,6 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 @Remote(UserDao.class)
 @Stateless
@@ -33,6 +31,12 @@ public class UserDaoImpl implements UserDao {
                     "address_id) " +
             "values (?, ?, ?, ?, ?, ?, ?, ?, ?) " +
             ";";
+
+    private static final  String REQ_FIND_CHILDREN =
+            "SELECT  c.firstname_child, c.name_child, c.birthdate_child" +
+            "FROM user u, child c " +
+            "WHERE u.id_user = ? AND u.id_user = c.user_id_1 " +
+            "ORDER BY c.firstname_child";
 
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
@@ -111,4 +115,23 @@ public class UserDaoImpl implements UserDao {
 
         return id;
     }
+
+    @Override
+    public void findChildren(User user) {
+
+        try (Connection connection = dataSource.getConnection()){
+            connection.setAutoCommit(false);
+            findChildrenStatement(user, connection);
+            connection.commit();
+        } catch (SQLException e) {
+            logger.error("Une erreur s'est produite lors de la récupération des enfants en base de données", e);
+        }
+    }
+
+    private void findChildrenStatement (User user, Connection connection) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(REQ_FIND_CHILDREN, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, user.getIdUser());
+        statement.executeUpdate();
+    }
+
 }
