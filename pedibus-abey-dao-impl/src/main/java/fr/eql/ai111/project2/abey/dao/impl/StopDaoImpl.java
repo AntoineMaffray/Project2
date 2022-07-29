@@ -1,5 +1,6 @@
 package fr.eql.ai111.project2.abey.dao.impl;
 
+import fr.eql.ai111.project2.abey.dao.LineDao;
 import fr.eql.ai111.project2.abey.dao.StopDao;
 import fr.eql.ai111.project2.abey.dao.impl.connection.PedibusAbeyDataSource;
 import fr.eql.ai111.project2.abey.entity.*;
@@ -27,6 +28,8 @@ public class StopDaoImpl implements StopDao {
             "AND t.stop_id = s.id_stop " +
             "ORDER BY t.order_trip";
 
+    private static final String REQ_FIND_ALL_STOPS = "SELECT * FROM stop ORDER BY name_stop";
+
     private static final String REQ_ADD_STOP =
             "insert into stop (name_stop, " +
                     "address_id) " +
@@ -51,6 +54,27 @@ public class StopDaoImpl implements StopDao {
             connection.close();
         } catch (SQLException e) {
             logger.error("Une erreur s'est produite lors de la consultation des arrêts en base de données", e);
+        }
+        return stops;
+    }
+
+    @Override
+    public List<Stop> findAllStops() {
+        List<Stop> stops = new ArrayList<>();
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(REQ_FIND_ALL_STOPS);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                stops.add(new Stop(
+                        resultSet.getInt("id_stop"),
+                        resultSet.getString("name_stop"),
+                        resultSet.getInt("address_id")
+                ));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            logger.error("Une erreur s'est produite lors de la consultation des arrêts en base de données.", e);
         }
         return stops;
     }

@@ -8,6 +8,8 @@ import fr.eql.ai111.project2.abey.dao.StreetDao;
 import fr.eql.ai111.project2.abey.entity.Address;
 import fr.eql.ai111.project2.abey.entity.Line;
 import fr.eql.ai111.project2.abey.entity.Stop;
+
+import fr.eql.ai111.project2.abey.entity.Stop;
 import fr.eql.ai111.project2.abey.entity.Street;
 
 import javax.ejb.EJB;
@@ -30,6 +32,9 @@ public class TrafficBusinessImpl implements TrafficBusiness {
         stopDao.addStop(stop);
     }
 
+    @EJB
+    private LineDao newLineDao;
+
     @Override
     public Line getLineUpdatedWithStops(Line line) {
         line.setStops(stopDao.findByLine(line));
@@ -39,6 +44,22 @@ public class TrafficBusinessImpl implements TrafficBusiness {
     @Override
     public List<Line> findAllLines() {
         return lineDao.findAllLines();
+    }
+
+
+    @Override
+    public List<Stop> findAllStops() {
+        return stopDao.findAllStops();
+    }
+
+    @Override
+    public int createLine(Line newLine) {
+        return newLineDao.createLine(newLine);
+    }
+
+    @Override
+    public void addStopsToSaveToDb(List<Stop> stopsToSave, Line newLine, int idLigne) {
+        lineDao.addStopsToSaveToDb(stopsToSave, newLine, idLigne);
     }
 
 }
