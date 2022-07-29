@@ -19,10 +19,7 @@
 				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
 
                 <b:row>
-                    <b:column style-class="col-sm-2 col-md-2">
-                        <h:outputText value="Ligne" />
-                    </b:column>
-                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                    <b:column style-class="col-xs-offset-0 col-xs-10">
                         <b:selectOneMenu id="modifLine"
                                          value="#{mbTraffic.selectedLine}"
                                          label="Ligne"
@@ -37,7 +34,7 @@
                             />
                         </b:selectOneMenu>
                     </b:column>
-                    <b:column style-class="col-xs-offset-1 col-xs-10">
+                    <b:column style-class="col-xs-offset-0 col-xs-10">
                         <b:selectOneMenu id="modifStop"
                                          value="#{mbTraffic.selectedStop}"
                                          label="Arrêt" >
@@ -58,15 +55,14 @@
                 </b:panel>
             </b:panel>
             <b:panel
-                    style-class="mt-3rem mb-5rem
-				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
+                    style-class="mt-3rem mb-5rem col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
                 <b:panel id="panLine" styleClass="#{mbTraffic.selectedLine == null ? 'off-screen' : ''}">
                     <b:row rendered="#{mbTraffic.selectedLine != null}">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m58!1m12!1m3!1d5254.304065851397!2d2.3099831768945562!3d48.81716058169972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m43!3e2!4m5!1s0x47e670ffc661c841%3A0x402a4702f9aec781!2s87%20Avenue%20de%20la%20R%C3%A9publique%2C%2092120%20Montrouge!3m2!1d48.8147598!2d2.3174745999999997!4m5!1s0x47e670fe52a06791%3A0x50281e718cda388!2s35%20Rue%20P%C3%A9rier%2C%20Montrouge!3m2!1d48.813956!2d2.3164010999999998!4m5!1s0x47e670ff0352bf51%3A0xa264b94218adff8d!2s49%20Rue%20P%C3%A9rier%2C%20Montrouge!3m2!1d48.8143372!2d2.3150299999999997!4m5!1s0x47e670ff25edd351%3A0x1442c44774afe34f!2s61%20Rue%20P%C3%A9rier%2C%20Montrouge!3m2!1d48.8144245!2d2.3136129999999997!4m5!1s0x47e670f8c9176e57%3A0xb8e1d93434a3a34a!2s75%20Rue%20P%C3%A9rier%2C%20Montrouge!3m2!1d48.8151048!2d2.3125182!4m5!1s0x47e670f8bffd9589%3A0xc5416254c3d6bed4!2s83%20Rue%20P%C3%A9rier%2C%20Montrouge!3m2!1d48.8153874!2d2.3116539!4m5!1s0x47e67157e98ee2b9%3A0xf8b634145e727e96!2sMaternelle%20maurice%20arnoux%2C%2030%20Rue%20Maurice%20Arnoux%2C%2092120%20Montrouge!3m2!1d48.820426499999996!2d2.3132769!5e0!3m2!1sfr!2sfr!4v1658933868894!5m2!1sfr!2sfr" width="666" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </b:row>
                 </b:panel>
             </b:panel>
         </b:form>
     </ui:define>
 </ui:composition>
-
 </html>

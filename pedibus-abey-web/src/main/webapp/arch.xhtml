@@ -9,17 +9,50 @@
 <h:head>
     <ui:insert name="head" />
     <h:outputStylesheet library="css" name="myStyle.css" />
+    <h:outputStylesheet library="css" name="illumination.css" />
 </h:head>
 
 <h:body>
-    <b:form>
-        <div class="bg-success header flex-justify-center flex-align-center">
-            <div>Pedibus Abey
-                <b:iconAwesome styleClass="text-orange" value="bus" solid="true"/>
-            </div>
-        </div>
+    <div class="pediTitle">
+        Texte transparent.
+    </div>
 
-        <b:navBar brand="#{mbConnection.connectedUser.nameUser} #{mbConnection.connectedUser.firstnameUser}">
+    <div class="mainTitle">
+        Pedibus
+    </div>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    style="height: 0;">
+        <defs>
+            <filter id="squiggly-0">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="squiggly-1">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="squiggly-2">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="squiggly-3">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="squiggly-4">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+        </defs>
+    </svg>
+
+    <b:form>
+        <b:navBar styleClass="navBarSetUp"
+                  brand="Bienvenue #{mbConnection.connectedUser.firstnameUser} #{mbConnection.connectedUser.nameUser} " >
             <b:navbarLinks pull="right">
                 <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Accueil" icon-awesome="home" href="index.xhtml" />
                 <b:dropMenu value="Espace utilisateur" iconAwesome="user"
@@ -32,6 +65,11 @@
                 rendered="#{mbConnection.adminConnected}"/>
                 <b:navLink styleClass="#{mbArch.navLinkStyle('traffic.xhtml')}" value="Trafic" icon-awesome="route" href="traffic.xhtml" />
                 <b:navLink styleClass="#{mbArch.navLinkStyle('glossary.xhtml')}" value="Glossaire" icon-awesome="book" href="glossary.xhtml" />
+                <b:dropMenu value="Traffic" iconAwesome="bus"
+                            rendered="#{mbConnection.isConnected()}">
+                    <b:navLink styleClass="#{mbArch.navLinkStyle('traffic.xhtml')}" value="Consulter les lignes" href="traffic.xhtml"/>
+                    <b:navLink styleClass="#{mbArch.navLinkStyle('createLine.xhtml')}" value="Créer une ligne" href="createLine.xhtml"/>
+                </b:dropMenu>
                 <b:navLink styleClass="#{mbArch.navLinkStyle('connection.xhtml')}" value="Connexion" icon-awesome="key" href="connection.xhtml"
                            rendered="#{!mbConnection.isConnected()}" />
                 <b:navCommandLink value = "Déconnexion" action="#{mbConnection.disconnect()}" icon-awesome="key"

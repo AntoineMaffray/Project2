@@ -19,16 +19,9 @@
                     style-class="mt-3rem mb-5rem
 				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
                 <b:row>
+
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Identifiant" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Identifiant" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpLogin"
                                      placeholder="Veuillez entrer un identifiant"
                                      value="#{mbLogin.newLoginUser}">
@@ -39,16 +32,8 @@
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Mot de passe" />
-                </b:column>
                 <b:column
-                        style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                    <h:outputText value="Mot de passe" />
-                </b:column>
-                <b:column
-                        style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                        style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputSecret id="inpPassword"
                                        placeholder="Veuillez entrer un mot de passe"
                                        value="#{mbLogin.newPasswordUser}">
@@ -60,15 +45,7 @@
                 </b:row>
                 <b:row>
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Prénom" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Prénom" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpFirstName"
                                        placeholder="Veuillez entrer votre prénom"
                                        value="#{mbLogin.newFirstnameUser}">
@@ -80,15 +57,7 @@
                 </b:row>
                 <b:row>
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Nom" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Nom" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpName"
                                        placeholder="Veuillez entrer votre nom"
                                        value="#{mbLogin.newNameUser}">
@@ -100,29 +69,13 @@
                 </b:row>
                 <b:row>
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Date de naissance" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Date de naissance" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:datepicker id="inpBirthDate" placeholder="Veuillez entrer une date de naissance" value="#{mbLogin.newBirthDateUser}" />
                     </b:column>
                 </b:row>
                 <b:row>
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Numéro de téléphone" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Numéro de téléphone" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpPhone"
                                      placeholder="Veuillez entrer votre numéro de téléphone"
                                      value="#{mbLogin.newPhoneUser}">
@@ -134,15 +87,7 @@
                 </b:row>
                 <b:row>
                     <b:column
-                            style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
-                        <h:outputText value="Adresse mail" />
-                    </b:column>
-                    <b:column
-                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
-                        <h:outputText value="Adresse mail" />
-                    </b:column>
-                    <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-8 col-md-8">
                         <b:inputText id="inpMail"
                                      placeholder="Veuillez entrer votre adresse mail"
                                      value="#{mbLogin.newMailUser}">
@@ -189,7 +134,7 @@
 
                 <b:row>
                     <b:column
-                            style-class="p-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4">
+                            style-class="p-1rem col-xs-offset-1 col-sm-offset-2 col-xs-10 col-sm-10 col-md-5">
                         <b:commandButton style-class="w-100" value="Enregistrer mes informations"
                                          action="#{mbLogin.registerUser()}" />
                     </b:column>

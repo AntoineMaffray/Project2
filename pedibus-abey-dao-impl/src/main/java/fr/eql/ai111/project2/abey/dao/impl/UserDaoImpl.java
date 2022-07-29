@@ -18,6 +18,7 @@ public class UserDaoImpl implements UserDao {
     String test = "test";
 
     private static final Logger logger = LogManager.getLogger();
+    private final DataSource dataSource = new PedibusAbeyDataSource();
 
     private static final String REQ_REG_USER =
             "insert into user (login_user, " +
@@ -38,7 +39,6 @@ public class UserDaoImpl implements UserDao {
             "WHERE u.id_user = ? AND u.id_user = c.user_id_1 " +
             "ORDER BY c.firstname_child";
 
-    private final DataSource dataSource = new PedibusAbeyDataSource();
 
     private static final String REQ_AUTH = "SELECT * FROM user WHERE login_user = ? AND password_user = ?";
 
@@ -112,7 +112,6 @@ public class UserDaoImpl implements UserDao {
                         "de l'utilisateur inséré.", e);
             }
         }
-
         return id;
     }
 

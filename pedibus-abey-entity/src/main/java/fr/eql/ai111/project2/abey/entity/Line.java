@@ -13,11 +13,10 @@ public class Line implements Serializable {
     private Date dateEndLine;
     private List<Stop> stops = new ArrayList<>();
 
-    public Line(int idLine, String nameLine, Date dateCreationLine, Date dateEndLine) {
+    public Line(int idLine, String nameLine) {
         this.idLine = idLine;
         this.nameLine = nameLine;
-        this.dateCreationLine = dateCreationLine;
-        this.dateEndLine = dateEndLine;
+
     }
 
     public int getIdLine() {

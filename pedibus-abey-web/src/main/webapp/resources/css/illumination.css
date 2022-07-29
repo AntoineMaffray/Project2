@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC:400,700");
+body {
+    font-family: 'Amatic SC', sans-serif;
+    font-size: 100px;
+}
+.pediTitle {
+    -webkit-animation: squiggly-anim 0.34s linear infinite;
+    background-image: url("https://media.discordapp.net/attachments/987046442948517948/1002537388263870535/9f713449ad30e7087c2c26d2852f7014.jpg");
+    animation: squiggly-anim 0.34s linear infinite;
+    color: transparent;
+    font-size: 50px;
+}
+
+body {
+    line-height: 100vh;
+    background: #111;
+    color: #fff;
+}
+.pediTitle {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    outline: none;
+    text-align: center;
+    line-height:2.8;
+    font-weight: bold;
+    font-family: "Arial Black";
+}
+
+.small {
+    font-size: 0.5em;
+}
+.smaller {
+    font-size: 0.4em;
+}
+p {
+    margin: 0;
+}
+@-webkit-keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+    25% {
+        filter: url("#squiggly-1");
+    }
+    50% {
+        filter: url("#squiggly-2");
+    }
+    75% {
+        filter: url("#squiggly-3");
+    }
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
+@keyframes squiggly-anim {
+    0% {
+        filter: url("#squiggly-0");
+    }
+    25% {
+        filter: url("#squiggly-1");
+    }
+    50% {
+        filter: url("#squiggly-2");
+    }
+    75% {
+        filter: url("#squiggly-3");
+    }
+    100% {
+        filter: url("#squiggly-4");
+    }
+}
