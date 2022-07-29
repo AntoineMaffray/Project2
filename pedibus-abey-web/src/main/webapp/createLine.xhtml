@@ -13,15 +13,14 @@
     </ui:define>
 
     <ui:define name="content">
-        <b:form id="createLineForm">
-            <b:panel
-                    style-class="mt-3rem mb-5rem
-				col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
+        <b:panel
+            style-class="mt-3rem mb-5rem col-sm-offset-1 col-md-offset-1 col-xs-10 col-sm-10 col-md-10">
+            <b:form id="constructLineForm">
                 <b:row>
                     <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="col-xs-offset-1 col-sm-offset-1 col-xs-12 col-sm-10 col-md-10">
                         <b:inputText id="inpNameLine"
-                                     placeholder="Veuillez entrer le nom de votre ligne"
+                                     placeholder="Veuillez entrer le nom de la ligne"
                                      value="#{mbTraffic.newNameLine}">
                             <f:facet name="prepend">
                                 <b:iconAwesome name="bus" />
@@ -29,22 +28,32 @@
                         </b:inputText>
                     </b:column>
                 </b:row>
-
                 <b:row>
                     <b:column
-                            style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                            style-class="hidden-xs col-sm-offset-1 col-sm-5 col-md-5 mt-10">
+                        <h:outputText value="Liste des arrêts ajoutés à la ligne :" />
+                    </b:column>
+                    <b:column
+                            style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
+                        <h:outputText value="Liste des arrêts ajoutés à la ligne :" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column
+                            style-class="col-xs-offset-1 col-sm-offset-1 col-xs-12 col-sm-10 col-md-10 mb-10">
                         <ui:repeat value="#{mbTraffic.stopsToSave}" var="arret">
                             <div>
-                                <h:outputText value="#{arret.nameStop}"/>
                                 <h:commandButton value="^" action="#{mbTraffic.moveUp(arret)}"></h:commandButton>
                                 <h:commandButton value="v" action="#{mbTraffic.moveDown(arret)}"></h:commandButton>
+                                <h:outputText value="#{arret.nameStop}"/>
                             </div>
                         </ui:repeat>
                     </b:column>
                 </b:row>
-
+                <p></p>
+                <div></div>
                 <b:row>
-                    <b:column style-class="col-xs-offset-1 col-sm-offset-0 col-xs-10 col-sm-8 col-md-8">
+                    <b:column style-class="col-xs-offset-1 col-sm-offset-1 col-xs-12 col-sm-10 col-md-10">
                         <b:selectOneMenu id="selectedStop"
                                          value="#{mbTraffic.selectedStop}"
                                          label="Liste des arrêts disponibles" >
@@ -59,20 +68,87 @@
                         </b:selectOneMenu>
                     </b:column>
                     <b:column
-                            style-class="p-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4">
-                        <b:commandButton style-class="w-100" value="Ajouter l'arrêt"
+                            style-class="p-1rem col-xs-offset-2 col-sm-offset-4 col-xs-6 col-sm-4 col-md-4">
+                        <b:commandButton style-class="w-100" value="Ajouter l'arrêt à la ligne"
                                          action="#{mbTraffic.addStopToLine()}" />
                     </b:column>
+                </b:row>
+            </b:form>
+            <b:form id="createStopForm">
+                <b:row style-class="mt-3rem mb-5rem col-xs-offset-1 col-sm-offset-1 col-xs-12 col-sm-10 col-md-10">
+                    <b:panel title="Créer un nouvel arrêt" titleClass="text-bold" collapsed="true" >
+                        <b:row>
+                            <b:column
+                                    style-class="col-xs-offset-1 col-sm-offset-1 col-xs-12 col-sm-10 col-md-10">
+                                <b:inputText id="inpStopName"
+                                             placeholder="Veuillez entrer un nom d'arrêt"
+                                             value="#{mbTraffic.newStopName}">
+                                    <f:facet name="prepend">
+                                        <b:iconAwesome name="traffic" />
+                                    </f:facet>
+                                </b:inputText>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column
+                                    style-class="hidden-xs mt-1rem col-sm-offset-1 col-sm-2 col-md-2">
+                                <h:outputText value="Adresse de l'arrêt" />
+                            </b:column>
+                            <b:column
+                                    style-class="hidden-sm hidden-md hidden-lg col-xs-offset-1 col-xs-10">
+                                <h:outputText value="Adresse de l'arrêt" />
+                            </b:column>
+                            <b:column styleClass="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-offset-0">
+                                <b:selectOneMenu
+                                        id="ddlStreets"
+                                        value="#{mbLogin.selectedStreet}"
+                                        label="Voie"
+                                        update="ddlAddresses" >
+                                    <f:selectItem itemLabel="Sélectionner une voie"  itemDisabled="true" noSelectionOption="true"/>
+                                    <f:selectItems
+                                            value="#{mbLogin.streets}"
+                                            var="street"
+                                            itemValue="#{street}"
+                                            itemLabel="#{street.nameStreet}"
+                                    />
+                                </b:selectOneMenu>
+                            </b:column>
+                            <b:column styleClass="col-xs-8 col-sm-6 col-md-4 col-lg-4 col-offset-0">
+                                <b:selectOneMenu
+                                        id="ddlAddresses"
+                                        value="#{mbTraffic.newStopAddress}"
+                                        label="Numéro de voie" >
+                                    <f:selectItem itemLabel="Sélectionner un n° de voie"  itemDisabled="true" noSelectionOption="true"/>
+                                    <f:selectItems
+                                            value="#{(mbLogin.getStreetUpdatedWithAddresses(mbLogin.selectedStreet).addresses)}"
+                                            var="address"
+                                            itemValue="#{address}"
+                                            itemLabel="#{address.streetNumber}"
+                                    />
+                                </b:selectOneMenu>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column
+                                    style-class="p-1rem col-xs-offset-6 col-sm-offset-8 col-xs-6 col-sm-4 col-md-4">
+                                <b:commandButton style-class="w-100" value="Créer l'arrêt"
+                                                 action="#{mbTraffic.addStop()}" />
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </b:row>
+            </b:form>
+            <b:form id="createLineForm">
+                <b:row>
                     <b:column
-                            style-class="p-1rem col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 col-md-4">
-                        <b:commandButton style-class="w-100" value="Ajouter la ligne"
+                            style-class="p-1rem col-xs-offset-2 col-sm-offset-4 col-xs-6 col-sm-4 col-md-4">
+                        <b:commandButton style-class="w-100" value="Créer la ligne"
                                          action="#{mbTraffic.createLine()}" />
                     </b:column>
                 </b:row>
-            </b:panel>
-        </b:form>
+            </b:form>
+        </b:panel>
     </ui:define>
-
 </ui:composition>
 
 </html>

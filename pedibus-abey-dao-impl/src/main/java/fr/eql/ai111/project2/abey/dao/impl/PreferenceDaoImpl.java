@@ -38,7 +38,7 @@ public class PreferenceDaoImpl implements PreferenceDao {
             connection.commit();
         } catch (SQLException e) {
             logger.error("Une erreur s'est produite lors de l'écriture " +
-                    "de l'utilisateur en base de données", e);
+                    "de la préférence en base de données", e);
         }
     }
 
@@ -59,7 +59,7 @@ public class PreferenceDaoImpl implements PreferenceDao {
             } catch (SQLException e) {
                 connection.rollback();
                 logger.error("Une erreur s'est produite lors de la récupération de l'id " +
-                        "de l'utilisateur inséré.", e);
+                        "de la préférence insérée.", e);
             }
         }
 

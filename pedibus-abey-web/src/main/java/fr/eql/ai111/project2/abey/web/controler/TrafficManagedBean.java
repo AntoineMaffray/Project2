@@ -35,8 +35,6 @@ public class TrafficManagedBean implements Serializable {
     @NotNull(message = "Veuillez renseigner une ligne")
     private String newNameLine;
 
-
-
     @EJB
     private TrafficBusiness trafficBusiness;
 
@@ -56,46 +54,43 @@ public class TrafficManagedBean implements Serializable {
 
     public void createLine() {
         Line newLine = new Line(0, newNameLine);
-        int idLigne = trafficBusiness.createLine(newLine);
-        trafficBusiness.addStopsToSaveToDb(stopsToSave, newLine, idLigne);
+        int idLine = trafficBusiness.createLine(newLine);
+        trafficBusiness.addStopsToSaveToDb(stopsToSave, newLine, idLine);
     }
 
     public void addStopToLine() {
         stopsToSave.add(selectedStop);
     }
 
-    public void moveUp(Stop arret) {
-
-        int newIndex = stopsToSave.indexOf(arret) -1;
-        if (newIndex <0) {
-            newIndex ++ ;
+    public void moveUp(Stop stop) {
+        int newIndex = stopsToSave.indexOf(stop) - 1;
+        if (newIndex < 0) {
+            newIndex++;
         }
-        stopsToSave.remove(arret);
-        stopsToSave.add(newIndex,arret);
+        stopsToSave.remove(stop);
+        stopsToSave.add(newIndex,stop);
     }
 
-    public void moveDown(Stop arret) {
-        int newIndex = stopsToSave.indexOf(arret) +1;
-        if (newIndex <0) {
-            newIndex -- ;
+    public void moveDown(Stop stop) {
+        int newIndex = stopsToSave.indexOf(stop) + 1;
+        if (newIndex < 0) {
+            newIndex--;
         }
-        stopsToSave.remove(arret);
-        stopsToSave.add(newIndex, arret);
+        stopsToSave.remove(stop);
+        stopsToSave.add(newIndex, stop);
+    }
+
+    public List<Line> findAllLines () {
+        return trafficBusiness.findAllLines();
     }
 
     public List<Stop> findAllStops () {
         return trafficBusiness.findAllStops();
     }
     public void addStop () {
-        System.out.println("on rentre dans la méthode");
         Stop stop = new Stop(666, newStopName, newStopAddress.getIdAddress());
-        System.out.println("nouvel arrêt créé");
         trafficBusiness.addStopStatement(stop);
-        System.out.println("méthode ajout lancée");
-    }
-
-    public List<Line> findAllLines () {
-        return trafficBusiness.findAllLines();
+        stops = findAllStops();
     }
 
     public List<Stop> getStopsToSave() {
@@ -128,19 +123,15 @@ public class TrafficManagedBean implements Serializable {
     public void setSelectedStop(Stop selectedStop) {
         this.selectedStop = selectedStop;
     }
-
     public String getNewStopName() {
         return newStopName;
     }
-
     public void setNewStopName(String newStopName) {
         this.newStopName = newStopName;
     }
-
     public Address getNewStopAddress() {
         return newStopAddress;
     }
-
     public void setNewStopAddress(Address newStopAddress) {
         this.newStopAddress = newStopAddress;
     }

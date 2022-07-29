@@ -22,6 +22,7 @@ public class ConnectionManagedBean implements Serializable {
     private String login;
     private String password;
     private User connectedUser;
+    private User admin;
 
 
     @EJB
@@ -48,6 +49,13 @@ public class ConnectionManagedBean implements Serializable {
 
     public boolean isConnected() {
         return connectedUser != null;
+    }
+
+    public boolean isAdminConnected() {
+        if (connectedUser == null) {
+            return false;
+        }
+        return connectedUser.getLoginUser().equals("admin") && connectedUser.getPasswordUser().equals("admin");
     }
 
     public void authorise() {
