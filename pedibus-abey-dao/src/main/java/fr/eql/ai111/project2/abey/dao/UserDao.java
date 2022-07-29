@@ -11,4 +11,5 @@ public interface UserDao {
 
     void registerUser (User user);
 
+    void findChildren(User user);
 }
