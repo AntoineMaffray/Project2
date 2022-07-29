@@ -19,7 +19,7 @@ import java.util.List;
 @Stateless
 public class LineDaoImpl implements LineDao {
 
-    private static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private final DataSource dataSource = new PedibusAbeyDataSource();
 
     private static final String REQ_FIND_ALL_LINES = "SELECT * FROM line ORDER BY name_line ";
