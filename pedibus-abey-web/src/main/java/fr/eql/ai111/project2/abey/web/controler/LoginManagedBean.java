@@ -6,13 +6,18 @@ import fr.eql.ai111.project2.abey.entity.Address;
 import fr.eql.ai111.project2.abey.entity.Street;
 import fr.eql.ai111.project2.abey.entity.User;
 import fr.eql.ai111.project2.abey.web.util.DateUtils;
+import javafx.stage.Window;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.swing.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,26 +28,26 @@ import java.util.List;
 @ViewScoped
 public class LoginManagedBean implements Serializable {
 
-    @NotNull (message = "veuillez entrer un login")
+    @Size(min = 1, message = "Veuillez entrer un login")
     private String newLoginUser;
-    @NotNull (message = "veuillez entrer un mot de passe")
+    @Size(min = 1, message = "veuillez entrer un mot de passe")
     private String newPasswordUser;
-    @NotNull (message = "veuillez entrer un prénom")
+    @Size(min = 1, message = "veuillez entrer un prénom")
     private String newNameUser;
-    @NotNull (message = "veuillez entrer un nom")
+    @Size(min = 1, message = "veuillez entrer un nom")
     private String newFirstnameUser;
     @NotNull (message = "veuillez entrer une date de naissance")
     private Date newBirthDateUser;
-    @NotNull (message = "veuillez entrer un numéro de téléphone")
+    @Size(min = 1, message = "veuillez entrer un numéro de téléphone")
     private String newPhoneUser;
-    @NotNull (message = "veuillez entrer une adresse mail")
+    @Size(min = 1, message = "veuillez entrer une adresse mail")
     private String newMailUser;
-
+    @NotNull (message = "veuillez sélectionner une voie")
+    private Street selectedStreet;
+    @NotNull (message = "veuillez sélectionner un numéro de voie")
+    private Address selectedAddress;
 
     private List<Street> streets;
-    private Street selectedStreet;
-    @NotNull
-    private Address selectedAddress;
 
     @EJB
     private SpaceBusiness spaceBusiness;
@@ -65,11 +70,14 @@ public class LoginManagedBean implements Serializable {
         return null;
     }
 
-    public void registerUser() {
+    public String registerUser() {
         User newUser = new User(0, newLoginUser, newPasswordUser, newNameUser,
                 newFirstnameUser,newBirthDateUser, newPhoneUser, newMailUser,
                 newBirthDateUser, selectedAddress.getIdAddress());
         spaceBusiness.registerUser(newUser);
+        String forward;
+        forward = "/popupCreatAccount.xhtml?faces-redirect=true";
+        return forward;
     }
 
     public String getNewLoginUser() {

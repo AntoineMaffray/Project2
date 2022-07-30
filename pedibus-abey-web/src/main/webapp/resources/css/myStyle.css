@@ -50,11 +50,28 @@
 .text-bold { font-weight: bold !important; }
 
 .mainTitle { font-size: 3.5em;
-    height: 30px;
+    height: 41px;
     line-height: 56px;
     text-align: center;
     font-family: Gigi;
     color: pink;
+}
+
+p{
+    font-size: 14px !important;
+    color: black !important;
+}
+
+ul{
+    font-size: 14px !important;
+    color: black !important;
+}
+
+h2{
+    font-size: 24px !important;
+    color: pink !important;
+    font-family: Calibri !important;
+    font-weight: bold !important;
 }
 
 h3 {

@@ -18,9 +18,8 @@
     </div>
 
     <div class="mainTitle">
-        Pedibus
+        *** Pedibus de Montrouge ***
     </div>
-
 
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
     style="height: 0;">
@@ -60,21 +59,21 @@
                     <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Ajouter un enfant" href="space.xhtml"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Participer au pédibus" href="participation.xhtml"/>
                 </b:dropMenu>
-                <b:navLink styleClass="#{mbArch.navLinkStyle('fillLine.xhtml.xhtml.xhtml')}" value="Remplir une ligne" href="fillLine.xhtml"
-                rendered="#{mbConnection.adminConnected}"/>
                 <b:dropMenu value="Trafic" iconAwesome="bus">
                     <b:navLink styleClass="#{mbArch.navLinkStyle('traffic.xhtml')}" value="Consulter les lignes" href="traffic.xhtml"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('createLine.xhtml')}" value="Créer une ligne" href="createLine.xhtml"
                                rendered="#{mbConnection.adminConnected}"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('addStop.xhtml.xhtml')}" value="Ajouter un arrêt" href="addStop.xhtml"
                                rendered="#{mbConnection.adminConnected}"/>
-
+                    <b:navLink styleClass="#{mbArch.navLinkStyle('fillLine.xhtml.xhtml.xhtml')}" value="Choisir un volontaire" href="fillLine.xhtml"
+                               rendered="#{mbConnection.adminConnected}"/>
                 </b:dropMenu>
                 <b:navLink styleClass="#{mbArch.navLinkStyle('connection.xhtml')}" value="Connexion" icon-awesome="key" href="connection.xhtml"
                            rendered="#{!mbConnection.isConnected()}" />
                 <b:navCommandLink value = "Déconnexion" action="#{mbConnection.disconnect()}" icon-awesome="key"
-                                  rendered="#{mbConnection.isConnected()}" />
-                <b:navLink styleClass="#{mbArch.navLinkStyle('login.xhtml')}" value="Créer un compte" icon-awesome="user-plus" href="login.xhtml" />
+                        rendered="#{mbConnection.isConnected()}" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('login.xhtml')}" value="Créer un compte" icon-awesome="user-plus" href="login.xhtml"
+                    rendered="#{!mbConnection.isConnected()}" />
             </b:navbarLinks>
         </b:navBar>
     </b:form>

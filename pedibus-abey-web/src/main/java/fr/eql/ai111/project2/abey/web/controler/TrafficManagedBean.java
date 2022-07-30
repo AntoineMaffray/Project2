@@ -52,10 +52,13 @@ public class TrafficManagedBean implements Serializable {
         return null;
     }
 
-    public void createLine() {
+    public String createLine() {
         Line newLine = new Line(0, newNameLine);
         int idLine = trafficBusiness.createLine(newLine);
         trafficBusiness.addStopsToSaveToDb(stopsToSave, newLine, idLine);
+        String forward;
+        forward = "/popupAddLine.xhtml?faces-redirect=true";
+        return forward;
     }
 
     public void addStopToLine() {
@@ -87,10 +90,13 @@ public class TrafficManagedBean implements Serializable {
     public List<Stop> findAllStops () {
         return trafficBusiness.findAllStops();
     }
-    public void addStop () {
+    public String addStop () {
         Stop stop = new Stop(666, newStopName, newStopAddress.getIdAddress());
         trafficBusiness.addStopStatement(stop);
         stops = findAllStops();
+        String forward;
+        forward = "/popupAddStop.xhtml?faces-redirect=true";
+        return forward;
     }
 
     public List<Stop> getStopsToSave() {

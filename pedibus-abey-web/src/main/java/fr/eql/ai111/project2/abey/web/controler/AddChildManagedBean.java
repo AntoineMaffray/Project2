@@ -49,25 +49,14 @@ public class AddChildManagedBean implements Serializable {
         fillSchoolLevels();
     }
 
-//    public String registerChild () {
-//        Child child = new Child(666, newFirstnameChild, newNameChild,
-//                newBirthDateChild, 0, 0, 0);
-//        return null;
-//    }
-//
-//    public String registerSchooling () {
-//        Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 1);
-//        return null;
-//    }
-
-
-
-
-    public void superRegisterChild() {
+    public String superRegisterChild() {
         Child child = new Child(666, newFirstnameChild, newNameChild,
                 newBirthDateChild, 1, 666, 0);
         Schooling schooling = new Schooling(666, newSchool, newSchoolLevel, 666);
         spaceBusiness.superRegisterChild(child, schooling, connectedUser);
+        String forward;
+        forward = "/popupAddChild.xhtml?faces-redirect=true";
+        return forward;
     }
 
     public String getNewNameChild() {

@@ -26,11 +26,11 @@ public class PreferenceManagedBean implements Serializable {
     private List<TimeSlot> timeSlots= new ArrayList<>();
     private List<Role> roles = new ArrayList<>();
 
-    @NotNull(message = "veuillez choisir un rôle")
+    @NotNull(message = "Veuillez choisir un rôle")
     private Role newRole;
-    @NotNull(message = "veuillez choisir un jour")
+    @NotNull(message = "Veuillez choisir un jour")
     private TypicalDay newTypicalDay;
-    @NotNull (message = "veuillez choisir un créneau")
+    @NotNull (message = "Veuillez choisir un créneau")
     private TimeSlot newTimeSlot;
 
     @EJB
@@ -43,14 +43,17 @@ public class PreferenceManagedBean implements Serializable {
         fillTimeSlots();
     }
 
-    public void registerPreference () {
-        Preference preference = new Preference(666, 666, newTypicalDay, newTimeSlot);
-        preferenceBusiness.RegisterPreference(preference, connectedUser);
-    }
-
-    public  void  registerParticipation () {
+    public void registerParticipation () {
         Participation participation = new Participation(666,666, newRole);
         preferenceBusiness.RegisterParticipation(participation, connectedUser);
+    }
+
+    public String registerPreference () {
+        Preference preference = new Preference(666, 666, newTypicalDay, newTimeSlot);
+        preferenceBusiness.RegisterPreference(preference, connectedUser);
+        String forward;
+        forward = "/popupParPref.xhtml?faces-redirect=true";
+        return forward;
     }
 
     public void fillTypicalDays () {

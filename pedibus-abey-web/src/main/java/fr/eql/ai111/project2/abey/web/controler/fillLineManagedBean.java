@@ -74,8 +74,6 @@ public class fillLineManagedBean implements Serializable {
         pilotes = createBusiness.findPilotes(selectedRolePrefPart);
     }
 
-
-
     public List<User> getPilotes() {
         return pilotes;
     }
@@ -188,7 +186,10 @@ public class fillLineManagedBean implements Serializable {
         this.trafficBusiness = trafficBusiness;
     }
 
-    public void attribuateAccompagnant() {
+    public String attribuateAccompagnant() {
         createBusiness.attribuateAccompagnant(newTypicalDay, newTimeSlot, selectedPilote, selectedLine);
+        String forward;
+        forward = "/popupFiLine.xhtml?faces-redirect=true";
+        return forward;
     }
 }
