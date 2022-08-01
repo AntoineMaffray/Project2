@@ -7,11 +7,12 @@ public interface SpaceBusiness {
 
     void registerUser (User user);
 
-
     void superRegisterChild(Child child, Schooling schooling, User user);
 
     void registerSchoolYear (SchoolYear schoolYear);
 
     Street getStreetUpdatedWithAddresses (Street street);
+
+    void findChildren(User user);
 
 }

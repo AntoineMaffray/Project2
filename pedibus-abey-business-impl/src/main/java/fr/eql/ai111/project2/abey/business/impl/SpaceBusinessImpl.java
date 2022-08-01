@@ -55,4 +55,9 @@ public class SpaceBusinessImpl implements SpaceBusiness {
         return street;
     }
 
+    @Override
+    public void findChildren(User user) {
+        userDao.findChildren(user);
+    }
+
 }

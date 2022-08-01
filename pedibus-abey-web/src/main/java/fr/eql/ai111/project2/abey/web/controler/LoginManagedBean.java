@@ -80,6 +80,8 @@ public class LoginManagedBean implements Serializable {
         return forward;
     }
 
+
+
     public String getNewLoginUser() {
         return newLoginUser;
     }

@@ -59,6 +59,11 @@ public class AddChildManagedBean implements Serializable {
         return forward;
     }
 
+    public void findChildren() {
+        spaceBusiness.findChildren(connectedUser);
+    }
+
+
     public String getNewNameChild() {
         return newNameChild;
     }
