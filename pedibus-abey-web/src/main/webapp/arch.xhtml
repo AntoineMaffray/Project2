@@ -56,6 +56,7 @@
                 <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Accueil" icon-awesome="home" href="index.xhtml" />
                 <b:dropMenu value="Espace utilisateur" iconAwesome="user"
                             rendered="#{mbConnection.isConnected()}">
+                    <b:navLink styleClass="#{mbArch.navLinkStyle('information.xhtml')}" value="Mes informations" href="information.xhtml"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Ajouter un enfant" href="space.xhtml"/>
                     <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Participer au pédibus" href="participation.xhtml"/>
                 </b:dropMenu>
