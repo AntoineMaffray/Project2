@@ -90,13 +90,10 @@ public class TrafficManagedBean implements Serializable {
     public List<Stop> findAllStops () {
         return trafficBusiness.findAllStops();
     }
-    public String addStop () {
+    public void addStop () {
         Stop stop = new Stop(666, newStopName, newStopAddress.getIdAddress());
         trafficBusiness.addStopStatement(stop);
         stops = findAllStops();
-        String forward;
-        forward = "/popupAddStop.xhtml?faces-redirect=true";
-        return forward;
     }
 
     public List<Stop> getStopsToSave() {
